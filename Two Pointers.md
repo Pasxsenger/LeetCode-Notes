@@ -44,7 +44,7 @@ public:
 };
 ```
 
-![image-20230112145334917](/Users/pasxsenger/Library/Application Support/typora-user-images/image-20230112145334917.png)
+![image-20230112145334917](Pictures/image-20230112145334917.png)
 
 
 
@@ -79,7 +79,7 @@ public:
 };
 ```
 
-![image-20230112145509680](/Users/pasxsenger/Library/Application Support/typora-user-images/image-20230112145509680.png)
+![image-20230112145509680](Pictures/image-20230112145509680.png)
 
 
 
@@ -113,6 +113,4 @@ public:
 };
 ```
 
-![image-20230112150142174](/Users/pasxsenger/Library/Application Support/typora-user-images/image-20230112150142174.png)
-
-<img src="/Users/pasxsenger/Library/Application Support/typora-user-images/image-20230112150142174.png"/>
+![image-20230112150142174](Pictures/image-20230112150142174.png)
