@@ -1,9 +1,11 @@
 # LeetCode-Notes
-This is some notes for things I learned by comparing my solutions to other solutions.
+This is a repository of LeetCode notes by an former old rookie ACM-ICPC participant who is now relearning algorithms as a toddler.
 
-When I wrote down these notes, I think it's verbose sometimes. But from another perspective, perhaps that's how progress is made.
+When I wrote down these notes, I think it's kind of verbose sometimes. But from another perspective, perhaps that's how progress is made.
 
 
+
+**Algorithms:**
 
 * [Tow Pointers](https://github.com/Pasxsenger/LeetCode-Notes/blob/main/Two%20Pointers.md)
 
@@ -20,3 +22,4 @@ Thank you [CyC2018](https://github.com/CyC2018/CS-Notes/blob/master/notes/Leetco
 *🕷️”Trying to do better.”*
 
 *—— from **Spider-Man: No Way Home***
+
