@@ -1,5 +1,185 @@
 # Two Pointers
 
+## [167. Two Sum II - Input Array Is Sorted (Medium)](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/)
+
+Nothing to say, it's not difficult.
+
+**Time Complexity: O(N)	Traverses all elements only once**
+
+**Space Complexity: O(1)	Only need two additional variables**
+
+
+
+### Version 1
+
+```c++
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& numbers, int target) {
+        int i = 0, j = numbers.size()-1;
+        vector<int> answer;
+        while(i < j){
+            if(numbers[i] + numbers[j] == target)   break;
+            else if(numbers[i] + numbers[j] > target)   j--;
+            else    i++;
+        }
+        answer.push_back(i+1);
+        answer.push_back(j+1);
+        return answer;
+    }
+};
+```
+
+![167-1](Pictures/167-1.png)
+
+
+
+### Version 2
+
+After checked the [Official Solution](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/solutions/127822/two-sum-ii-input-array-is-sorted/), I found that I thought about use a variable to represent the sum, so that it doesn't have to do the sum over and over again during the comparison. 
+
+But emmm, I was lazy, I have to admit. 
+
+Anyway, it turns out that this little trick does work, which improved the **runtime**.
+
+```c++
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& numbers, int target) {
+        int i = 0, j = numbers.size()-1;
+        vector<int> answer;
+        while(i < j){
+            int sum = numbers[i] + numbers[j];	// I won't be lazy again! ...Will I?
+            if(sum == target)   break;
+            else if(sum > target)   j--;
+            else    i++;
+        }
+        answer.push_back(i+1);
+        answer.push_back(j+1);
+        return answer;
+    }
+};
+```
+
+![167-1](Pictures/167-2.png)
+
+
+
+### Version 3
+
+I also found that I could use `{}` to replace the `vector<int> answer ` , which saved some **memory** space and made my program beat <u>94.15%</u>! 	Yeahhh\~~~
+
+And the **<u>robustness</u>** is a great part for me to keep learning!
+
+```c++
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& numbers, int target) {
+        int i = 0, j = numbers.size()-1;
+        while(i < j){
+            int sum = numbers[i] + numbers[j];
+            if(sum == target)   return {i+1, j+1};	// replace the vector
+            else if(sum > target)   j--;
+            else    i++;
+        }
+        return {-1, -1};	// robustness
+    }
+};
+```
+
+![167-1](Pictures/167-3.png)
+
+
+
+
+
+## [633. Sum of Square Numbers (Medium)](https://leetcode.com/problems/sum-of-square-numbers/description/)
+
+It seems easy, right? Just traverse from `0` to `sqrt(target)`.
+
+Then why I got 4 wrong answers! (Don't laugh at me)
+
+<img src="Pictures/633-1.png" alt="167-1" style="zoom:50%;" />
+
+### Version 1 (Wrong Answer)
+
+Let's take a look. (Let me stress it again: DO NOT LAUGH AT ME!)
+
+```c++
+class Solution {
+public:
+    bool judgeSquareSum(int c) {
+        int i = 0, j = sqrt(c);
+        while (i < j){
+            if(i*i + j*j == c)  return true;
+            else if(i*i + j*j < c) i++;
+            else    j--;
+        }
+        return false;
+    }
+};
+```
+
+The wrong part is in the `while` sentence. So I got version 2.
+
+
+
+### Version 2 (Runtime Error)
+
+```c++
+class Solution {
+public:
+    bool judgeSquareSum(int c) {
+        int i = 0, j = sqrt(c);
+        while (i <= j){
+            if(i*i + j*j == c)  return true;
+            else if(i*i + j*j < c) i++;
+            else    j--;
+        }
+        return false;
+    }
+};
+```
+
+Dang! Why did this happen?
+
+```shell
+Line 6: Char 20: runtime error: signed integer overflow: 829921 + 2146654224 cannot be represented in type 'int' (solution.cpp)
+SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior prog_joined.cpp:15:20
+```
+
+It turns out that the sum is too large to be an `int`. That's fine. And jump over other two wrong answers.
+
+
+
+### Version 3
+
+This time, I didn't add them up. Conversely, I subtracted them.
+
+```c++
+class Solution {
+public:
+    bool judgeSquareSum(int c) {
+        int i = 0, j = (int)sqrt(c);
+        while (i <= j){
+            int temp = c - i*i - j*j; // subtraction
+            if(temp == 0)  return true;
+            else if(temp > 0) i++;
+            else    j--;
+        }
+        return false;
+    }
+};
+```
+
+Finally! 
+
+This is easy, right?
+
+![167-1](Pictures/633-2.png)
+
+
+
 ## [345. Reverse Vowels of a String (Easy)](https://leetcode.com/problems/reverse-vowels-of-a-string/)
 
 Initialize two pointers. 
@@ -44,13 +224,13 @@ public:
 };
 ```
 
-![image-20230112145334917](Pictures/image-20230112145334917.png)
+![image-20230112145334917](Pictures/345-1.png)
 
 
 
 ### Version 2
 
-After check the [Official Solution](https://leetcode.com/problems/reverse-vowels-of-a-string/solutions/2484211/reverse-vowels-of-a-string/?orderBy=most_votes), I simplified my `isvowel()` function. And the **runtime** became shorter.
+After checked the [Official Solution](https://leetcode.com/problems/reverse-vowels-of-a-string/solutions/2484211/reverse-vowels-of-a-string/?orderBy=most_votes), I simplified my `isvowel()` function. And the **runtime** became shorter.
 
 ```c++
 class Solution {
@@ -79,7 +259,7 @@ public:
 };
 ```
 
-![image-20230112145509680](Pictures/image-20230112145509680.png)
+![image-20230112145509680](Pictures/345-2.png)
 
 
 
@@ -113,4 +293,4 @@ public:
 };
 ```
 
-![image-20230112150142174](Pictures/image-20230112150142174.png)
+![image-20230112150142174](Pictures/345-3.png)
