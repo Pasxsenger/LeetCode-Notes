@@ -8,6 +8,7 @@ When I wrote down these notes, I think it's kind of verbose sometimes. But from 
 **Algorithms:**
 
 * [Tow Pointers](https://github.com/Pasxsenger/LeetCode-Notes/blob/main/Two%20Pointers.md)
+* [Sorting](https://github.com/Pasxsenger/LeetCode-Notes/blob/main/Sorting.md)
 
 
 
