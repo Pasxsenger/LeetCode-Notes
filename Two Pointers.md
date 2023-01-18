@@ -403,6 +403,84 @@ public:
 
 ## [141. Linked List Cycle (Easy)](https://leetcode.com/problems/linked-list-cycle/)
 
+I had no clue how to use two pointers in this problem. So I tried to record the pointer in each step instead of using two pointers. Then used the find() to find out if this address had been visited.
 
+### Solution 1 (✅)
+
+```c++
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        ListNode *p = head;
+        vector<ListNode*> list;
+        while(p != NULL && p->next != NULL){
+            list.push_back(p);
+            p = p->next;
+            if(find(list.begin(), list.end(), p) != list.end())
+                return true;
+        }
+        return false;
+    }
+};
+```
+
+And it turned out that it was ==**not efficient at all**==.
+
+![image-20230112150142174](Pictures/141-1.png)
+
+
+
+### Solution 2 (✅)
+
+So I learned from [KnockCat](https://leetcode.com/KnockCat/)'s [solution](https://leetcode.com/problems/linked-list-cycle/solutions/1829489/c-easy-to-understand-2-pointer-fast-slow/). To be more specific, it was called **"tortoise and the hare algorithm"** using two pointers. The "hare" runs faster, which takes two steps at one time. And the "tortoise" runs slower, which takes one step at a time.
+
+If there is a loop, the hare and the tortoise will certainly meet each other.
+
+Compared with solution 1, this one is much easier and much more efficient.
+
+```c++
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        if(head == NULL)
+            return false;
+
+        ListNode *hare = head;
+        ListNode *tortoise = head;
+        while(hare != NULL && hare->next != NULL){
+            hare = hare->next->next;
+            tortoise = tortoise->next;
+            if(hare == tortoise)
+                return true;
+        }
+        return false;
+    }
+};
+```
+
+![image-20230112150142174](Pictures/141-2.png)
+
+==**What a huge progress!**==
+
+
+
+## [524. Longest Word in Dictionary through Deleting (Medium)](https://leetcode.com/problems/longest-word-in-dictionary-through-deleting/)
 
 ### Solution 1
+
