@@ -10,7 +10,7 @@ Nothing to say, it's not difficult.
 
 
 
-### Version 1 (✅)
+### Solution 1 (✅)
 
 ```c++
 class Solution {
@@ -34,7 +34,7 @@ public:
 
 
 
-### Version 2 (✅)
+### Solution 2 (✅)
 
 After checked the [Official Solution](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/solutions/127822/two-sum-ii-input-array-is-sorted/), I found that I thought about use a variable to represent the sum, so that it doesn't have to do the sum over and over again during the comparison. 
 
@@ -65,7 +65,7 @@ public:
 
 
 
-### Version 3 (✅)
+### Solution 3 (✅)
 
 I also found that I could use `{}` to replace the `vector<int> answer ` , which saved some **memory** space and made my program beat <u>94.15%</u>! 	Yeahhh\~~~
 
@@ -101,7 +101,7 @@ Then why I got 4 wrong answers! (Don't laugh at me)
 
 <img src="Pictures/633-1.png" alt="167-1" style="zoom:50%;" />
 
-### Version 1 (❌ Wrong Answer)
+### Solution 1 (❌ Wrong Answer)
 
 Let's take a look. (Let me stress it again: DO NOT LAUGH AT ME!)
 
@@ -124,7 +124,7 @@ The wrong part is in the `while` sentence. So I got version 2.
 
 
 
-### Version 2 (❌ Runtime Error)
+### Solution 2 (❌ Runtime Error)
 
 ```c++
 class Solution {
@@ -152,7 +152,7 @@ It turns out that the sum is too large to be an `int`. That's fine. And jump ove
 
 
 
-### Version 3 (✅)
+### Solution 3 (✅)
 
 This time, I didn't add them up. Conversely, I subtracted them.
 
@@ -194,7 +194,7 @@ Pointer `j` points to the right end `s.size()-1` and traverses to the left end.
 
 
 
-### Version 1 (✅)
+### Solution 1 (✅)
 
 ```c++
 class Solution {
@@ -228,7 +228,7 @@ public:
 
 
 
-### Version 2 (✅)
+### Solution 2 (✅)
 
 After checked the [Official Solution](https://leetcode.com/problems/reverse-vowels-of-a-string/solutions/2484211/reverse-vowels-of-a-string/?orderBy=most_votes), I simplified my `isvowel()` function. And the **runtime** became shorter.
 
@@ -263,7 +263,7 @@ public:
 
 
 
-### Version 3 (✅)
+### Solution 3 (✅)
 
 It seems like there is a `swap` function. I didn't know it hhhhh.
 
@@ -301,7 +301,7 @@ public:
 
 
 
-### Version 1 (❌ Runtime Error)
+### Solution 1 (❌ Runtime Error)
 
 I tried to solve it recursively, but I just painted the lily.
 
@@ -336,9 +336,9 @@ public:
 
 
 
-### Version 2 (✅)
+### Solution 2 (✅)
 
-However, I led myself into the labyrinth. So, I had to learn from others' solutions.
+However, I led myself into the labyrinth. So, I had to learn from others' solutions, thanks to [kritika_12](https://leetcode.com/kritika_12/)'s [solution](https://leetcode.com/problems/valid-palindrome-ii/solutions/1324407/c-solution-two-pointer-approach/).
 
 And I think it is like reducing a multi-layer recursion to a 2-layer recursion.
 
@@ -371,3 +371,38 @@ public:
 ```
 
 ![image-20230112150142174](Pictures/680-1.png)
+
+
+
+## [88. Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/)
+
+The point is to iterate through the vectors from the tail instead of head.
+
+### Solution 1 (✅)
+
+```c++
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        int i = m-1, j = n-1, k = m+n-1;
+        while(i >= 0 && j >= 0){
+            if(nums1[i] > nums2[j])
+                nums1[k--] = nums1[i--];
+            else
+                nums1[k--] = nums2[j--];
+        }
+        while(j >= 0)
+            nums1[k--] = nums2[j--];
+    }
+};
+```
+
+![image-20230112150142174](Pictures/88-1.png)
+
+
+
+## [141. Linked List Cycle (Easy)](https://leetcode.com/problems/linked-list-cycle/)
+
+
+
+### Solution 1
