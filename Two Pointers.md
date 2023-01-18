@@ -91,6 +91,8 @@ public:
 
 
 
+--------
+
 
 
 ## [633. Sum of Square Numbers (Medium)](https://leetcode.com/problems/sum-of-square-numbers/description/)
@@ -177,6 +179,8 @@ Finally!
 This is easy, right?
 
 ![167-1](Pictures/633-2.png)
+
+----
 
 
 
@@ -295,6 +299,8 @@ public:
 
 ![image-20230112150142174](Pictures/345-3.png)
 
+----
+
 
 
 ## [680. Valid Palindrome II](https://leetcode.com/problems/valid-palindrome-ii/)
@@ -372,6 +378,8 @@ public:
 
 ![image-20230112150142174](Pictures/680-1.png)
 
+----
+
 
 
 ## [88. Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/)
@@ -398,6 +406,8 @@ public:
 ```
 
 ![image-20230112150142174](Pictures/88-1.png)
+
+----
 
 
 
@@ -432,7 +442,7 @@ public:
 };
 ```
 
-And it turned out that it was <mark>**not efficient at all**</mark>.
+And it turned out that it was **not efficient at all**.
 
 ![image-20230112150142174](Pictures/141-1.png)
 
@@ -476,7 +486,9 @@ public:
 
 ![image-20230112150142174](Pictures/141-2.png)
 
-==**What a huge progress!**==
+**What a huge progress!**
+
+----
 
 
 
