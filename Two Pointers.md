@@ -384,7 +384,7 @@ public:
 
 ## [88. Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/)
 
-The point is to iterate through the vectors from the tail instead of head.
+The point is to iterate through the vectors **from the tail instead of head**.
 
 ### Solution 1 (✅)
 
@@ -413,7 +413,7 @@ public:
 
 ## [141. Linked List Cycle (Easy)](https://leetcode.com/problems/linked-list-cycle/)
 
-I had no clue how to use two pointers in this problem. So I tried to record the pointer in each step instead of using two pointers. Then used the find() to find out if this address had been visited.
+I had no clue how to use two pointers in this problem. So I tried to record the pointer in each step instead of using two pointers. Then used `find()` to find out if this address had been visited.
 
 ### Solution 1 (✅)
 
@@ -450,11 +450,11 @@ And it turned out that it was **not efficient at all**.
 
 ### Solution 2 (✅)
 
-So I learned from [KnockCat](https://leetcode.com/KnockCat/)'s [solution](https://leetcode.com/problems/linked-list-cycle/solutions/1829489/c-easy-to-understand-2-pointer-fast-slow/). To be more specific, it was called **"tortoise and the hare algorithm"** using two pointers. The "hare" runs faster, which takes two steps at one time. And the "tortoise" runs slower, which takes one step at a time.
+So I learned from [KnockCat](https://leetcode.com/KnockCat/)'s [solution](https://leetcode.com/problems/linked-list-cycle/solutions/1829489/c-easy-to-understand-2-pointer-fast-slow/). To be more specific, it was called **"tortoise and the hare algorithm"** using two pointers. The `hare` runs faster, which takes two steps at one time. And the `tortoise` runs slower, which takes one step at a time.
 
-If there is a loop, the hare and the tortoise will certainly meet each other.
+If there is a loop, the `hare` and the `tortoise` will certainly meet each other.
 
-Compared with solution 1, this one is much easier and much more efficient.
+Compared with `solution 1`, this one is much easier and much more efficient.
 
 ```c++
 /**
@@ -494,5 +494,42 @@ public:
 
 ## [524. Longest Word in Dictionary through Deleting (Medium)](https://leetcode.com/problems/longest-word-in-dictionary-through-deleting/)
 
-### Solution 1
+### Solution 1 (✅)
 
+I iterated the `dictionary` vector and compared each string in `dictionary` with `s`, so that I could find out if `dictionary[i]` is a substring of `s`. 
+
+If it is, it will be pushed back into vector `ans`, which was initialized with an empty string `""`.
+
+One blip was about the `cmp()`. At first I met the problem `reference to non-static member function must be called`. After I added `static`, it was ok.
+
+```c++
+class Solution {
+public:
+    static bool cmp(string s1, string s2){
+        if(s1.size() == s2.size())
+            return s1 <= s2;
+        else
+            return s1.size() >= s2.size();
+    }
+    string findLongestWord(string s, vector<string>& dictionary) {
+        int len = s.size(), size = dictionary.size();
+        vector<string> ans;
+        ans.push_back("");
+        for(int i = 0; i < size; i++){
+            int p1 = 0, p2 = 0, lenDic = dictionary[i].size();
+            while(p1 < len && p2 < lenDic){
+                if(s[p1] == dictionary[i][p2]){
+                    p1++;
+                    p2++;
+                }
+                else    p1++;
+            }
+            if(p2 == lenDic)  ans.push_back(dictionary[i]);
+        }
+        sort(ans.begin(), ans.end(), cmp);
+        return ans[0];
+    }
+};
+```
+
+![image-20230112150142174](Pictures/524-1.png)
