@@ -2,7 +2,7 @@
 
 ## [215. Kth Largest Element in an Array (Medium)](https://leetcode.com/problems/kth-largest-element-in-an-array/)
 
-### Version 1 (✅)
+### Solution 1 (✅)
 
 Just kidding hhhhh...
 
@@ -20,7 +20,7 @@ public:
 
 
 
-### Version 2 (✅)
+### Solution 2 (✅)
 
 With [jianchao-li](https://leetcode.com/jianchao-li/)'s [solutions](https://leetcode.com/problems/kth-largest-element-in-an-array/solutions/60309/c-stl-partition-and-heapsort/), I learned `min-heap sort` built with `priority queue`.
 
@@ -47,7 +47,7 @@ It can be foreseen that it's not as efficient as sort. But it's not the point.
 
 ## [347. Top K Frequent Elements (Medium)](https://leetcode.com/problems/top-k-frequent-elements/)
 
-### Version 1 (✅)
+### Solution 1 (✅)
 
 With [k_joshi](https://leetcode.com/k_joshi/)'s [solution](https://leetcode.com/problems/top-k-frequent-elements/solutions/1927997/easy-and-simple-c-code-bucket-sort-o-n-linear-time-complexity/), I used `bucket sort`, which costed a lot of space.
 
@@ -83,7 +83,7 @@ public:
 
 
 
-### Version 2 (✅)
+### Solution 2 (✅)
 
 This is just my experiment. I changed `auto` to `pair` to observe the result. 
 
@@ -121,7 +121,7 @@ It turned out that it got faster.
 
 
 
-### Version 3 (✅)
+### Solution 3 (✅)
 
 With [sxycwzwzq](https://leetcode.com/sxycwzwzq/)'s [solution](https://leetcode.com/problems/top-k-frequent-elements/solutions/81624/c-o-n-log-n-k-unordered-map-and-priority-queue-maxheap-solution/), I used `max-heap` to find out the top K elements, which saved lots of space.
 
@@ -151,3 +151,46 @@ public:
 
 ----
 
+
+## [451. Sort Characters By Frequency (Medium)](https://leetcode.com/problems/sort-characters-by-frequency/)
+
+### Solution 1 (✅)
+
+Similar to the last problem, I used an `unordered_map` to record frequencies. Then used `priority_queue` to build a `max-heap`. At last, composed the string `ans` by every root node.
+
+And I learned to use `std::string()` to form up a repeated string, so that I didn't have to use loop to form it.
+
+```c++
+class Solution {
+public:
+    string frequencySort(string s) {
+        unordered_map<int, int> mp;
+        for(char c: s)
+            mp[c-'a']++;
+        
+        priority_queue<pair<int, int>> pq;
+        for(pair m: mp)
+            pq.push(make_pair(m.second, m.first));
+        
+        string ans = "";
+        while(!pq.empty()){
+            char tempch = 'a' + pq.top().second;
+            ans = ans + string(pq.top().first, tempch);
+            pq.pop();
+        }
+        return ans;
+    }
+};
+```
+
+![image-20230112150142174](Pictures/451-1.png)
+
+----
+
+
+
+## [75. Sort Colors (Medium)](https://leetcode.com/problems/sort-colors/)
+
+
+
+### Solution 1 (✅)
