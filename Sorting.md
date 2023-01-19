@@ -16,7 +16,7 @@ public:
 };
 ```
 
-![image-20230112150142174](Pictures/215-1.png)
+![215-1](Pictures/215-1.png)
 
 
 
@@ -41,7 +41,7 @@ public:
 
 It can be foreseen that it's not as efficient as sort. But it's not the point.
 
-![image-20230112150142174](Pictures/215-2.png)
+![215-2](Pictures/215-2.png)
 
 ----
 
@@ -79,7 +79,7 @@ public:
 };
 ```
 
-![image-20230112150142174](Pictures/347-1.png)
+![347-1](Pictures/347-1.png)
 
 
 
@@ -117,7 +117,7 @@ public:
 
 It turned out that it got faster.
 
-![image-20230112150142174](Pictures/347-2.png)
+![347-2](Pictures/347-2.png)
 
 
 
@@ -147,7 +147,7 @@ public:
 };
 ```
 
-![image-20230112150142174](Pictures/347-3.png)
+![347-3](Pictures/347-3.png)
 
 ----
 
@@ -183,7 +183,7 @@ public:
 };
 ```
 
-![image-20230112150142174](Pictures/451-1.png)
+![451-1](Pictures/451-1.png)
 
 ----
 
@@ -215,7 +215,7 @@ public:
 
 As a result, the performance was not good of course.
 
-![image-20230112150142174](Pictures/75-1.png)
+![75-1](Pictures/75-1.png)
 
 
 
@@ -252,4 +252,4 @@ public:
 
 Hooray! [chiragBavishi](https://leetcode.com/chiragBavishi/) didn't lie to us. It does beat `100%` on runtime.
 
-![image-20230112150142174](Pictures/75-2.png)
+![75-2](Pictures/75-2.png)

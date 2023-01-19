@@ -26,7 +26,7 @@ public:
 };
 ```
 
-![image-20230112150142174](Pictures/455-1.png)
+![455-1](Pictures/455-1.png)
 
 ----
 

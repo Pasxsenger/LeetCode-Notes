@@ -61,7 +61,7 @@ public:
 };
 ```
 
-![167-1](Pictures/167-2.png)
+![167-2](Pictures/167-2.png)
 
 
 
@@ -87,7 +87,7 @@ public:
 };
 ```
 
-![167-1](Pictures/167-3.png)
+![167-3](Pictures/167-3.png)
 
 
 
@@ -101,7 +101,7 @@ It seems easy, right? Just traverse from `0` to `sqrt(target)`.
 
 Then why I got 4 wrong answers! (Don't laugh at me)
 
-<img src="Pictures/633-1.png" alt="167-1" style="zoom:50%;" />
+<img src="Pictures/633-1.png" alt="633-1" style="zoom:50%;" />
 
 ### Solution 1 (❌ Wrong Answer)
 
@@ -178,7 +178,7 @@ Finally!
 
 This is easy, right?
 
-![167-1](Pictures/633-2.png)
+![633-2](Pictures/633-2.png)
 
 ----
 
@@ -228,7 +228,7 @@ public:
 };
 ```
 
-![image-20230112145334917](Pictures/345-1.png)
+![345-1](Pictures/345-1.png)
 
 
 
@@ -263,7 +263,7 @@ public:
 };
 ```
 
-![image-20230112145509680](Pictures/345-2.png)
+![345-2](Pictures/345-2.png)
 
 
 
@@ -297,7 +297,7 @@ public:
 };
 ```
 
-![image-20230112150142174](Pictures/345-3.png)
+![345-3](Pictures/345-3.png)
 
 ----
 
@@ -376,7 +376,7 @@ public:
 };
 ```
 
-![image-20230112150142174](Pictures/680-1.png)
+![680-1](Pictures/680-1.png)
 
 ----
 
@@ -405,7 +405,7 @@ public:
 };
 ```
 
-![image-20230112150142174](Pictures/88-1.png)
+![88-1](Pictures/88-1.png)
 
 ----
 
@@ -444,7 +444,7 @@ public:
 
 And it turned out that it was **not efficient at all**.
 
-![image-20230112150142174](Pictures/141-1.png)
+![141-1](Pictures/141-1.png)
 
 
 
@@ -484,7 +484,7 @@ public:
 };
 ```
 
-![image-20230112150142174](Pictures/141-2.png)
+![141-2](Pictures/141-2.png)
 
 **What a huge progress!**
 
@@ -532,4 +532,5 @@ public:
 };
 ```
 
-![image-20230112150142174](Pictures/524-1.png)
+![524-1](Pictures/524-1.png)
+
