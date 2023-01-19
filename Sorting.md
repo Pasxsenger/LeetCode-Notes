@@ -191,6 +191,65 @@ public:
 
 ## [75. Sort Colors (Medium)](https://leetcode.com/problems/sort-colors/)
 
-
-
 ### Solution 1 (✅)
+
+In this solution, I didn't apply any sorting algorithms. Just simply recorded the frequencies and rewrote the vector `nums`.
+
+```c++
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int zeros = 0, ones = 0, twos = 0;
+        for(int num: nums){
+            if(num == 0)    zeros++;
+            else if(num == 1)   ones++;
+            else    twos++;
+        }
+        int index = 0;
+        while(zeros--)  nums[index++] = 0;
+        while(ones--)  nums[index++] = 1;
+        while(twos--)  nums[index++] = 2;
+    }
+};
+```
+
+As a result, the performance was not good of course.
+
+![image-20230112150142174](Pictures/75-1.png)
+
+
+
+### Solution 2 (✅)
+
+Then I tried [chiragBavishi](https://leetcode.com/chiragBavishi/)'s [solution](https://leetcode.com/problems/sort-colors/solutions/3040429/c-solution-beat-100/) which beat `100%` on runtime.
+
+The main idea is to set two pointers. One points to the head, and the other points to the end. Then iterate the array and swap with the pointer `low` if `nums[index] == 0` and swap with pointer `high ` if `nums[index] == 2`, what left in the middle will naturally be `1`.
+
+With this algorithm, we only have to iterate the `nums` once.
+
+```c++
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int low=0;
+        int high=nums.size()-1;
+        int index=0;
+
+        while(index<=high){
+            if(nums[index] == 0) {
+                nums[index++] = nums[low];
+                nums[low++] = 0;
+            }
+            else if(nums[index] == 2) {
+                nums[index] = nums[high];
+                nums[high--] = 2;
+            }
+            else index++;
+        }
+    }
+};
+```
+
+Hooray! [chiragBavishi](https://leetcode.com/chiragBavishi/) didn't lie to us. It does beat `100%` on runtime.
+
+![image-20230112150142174](Pictures/75-2.png)
