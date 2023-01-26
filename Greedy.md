@@ -252,4 +252,114 @@ public:
 
 ## [121. Best Time to Buy and Sell Stock (Easy)](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
 
+### Solution 1 (❌)
+
+I tried to use brute force to solve it, which was to calculate the difference value of each pair.
+
+```c++
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int N = prices.size();
+        priority_queue<int> pq;
+        for(int i = 0; i < N; i++){
+            for(int j = i+1; j < N; j++){
+                pq.push(prices[j]-prices[i]);
+            }
+        }
+        if(pq.top() > 0)    return pq.top();
+        return 0;
+    }
+};
+```
+
+And I got a `Runtime error`.
+
+![121-1](Pictures/121-1.png)
+
+### Solution 2 (❌)
+
+I thought it was just about robustness. So I added an if statement. But it turned out I was too naive.
+
+```c++
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int N = prices.size();
+        if(N <= 1)  return 0;
+        
+        priority_queue<int> pq;
+        for(int i = 0; i < N; i++){
+            for(int j = i+1; j < N; j++){
+                pq.push(prices[j]-prices[i]);
+            }
+        }
+        if(pq.top() > 0)    return pq.top();
+        return 0;
+    }
+};
+```
+
+But it turned out I was too optimistic——what I was worried about happened.
+
+![121-2](Pictures/121-2.png)
+
+### Solution 3 (❌)
+
+So I reduced the `priority queue` (actually it was kind of useless from the beginning.)
+
+```c++
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int N = prices.size();
+        if(N <= 1)  return 0;
+
+        int maxProfit = 0;
+        for(int i = 0; i < N; i++){
+            for(int j = i+1; j < N; j++){
+                int profit = prices[j]-prices[i];
+                if(profit > maxProfit)
+                    maxProfit = profit;
+            }
+        }
+        return maxProfit;
+    }
+};
+```
+
+It passed the testcase 198, but failed to pass the testcase 199. 
+
+Ok! Fine! I surrendered. Now I'm gonna try some real algorithms.
+
+![121-3](Pictures/121-3.png)
+
+### Solution 4 (✅)
+
+This time, I used two variables `min_price` and `max_profit`. With them, I only had to iterate the `prices` once. Thanks to [zxyperfect](https://leetcode.com/zxyperfect/)'s [solution](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/solutions/39039/sharing-my-simple-and-clear-c-solution/).
+
+```c++
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int min_price = INT_MAX, max_profit = 0, N = prices.size();
+        for(int i = 0; i < N; i++){
+            min_price = min(min_price, prices[i]);
+            max_profit = max(max_profit, prices[i]-min_price);
+        }
+        return max_profit;
+    }
+};
+```
+
+Finally, it was `AC`.
+
+![121-4](Pictures/121-4.png)
+
+This story tells us never to underestimate any "easy" problems.
+
+----
+
+## [122. Best Time to Buy and Sell Stock II (Medium)](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/)
+
 ### Solution 1 (✅)
