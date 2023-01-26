@@ -103,9 +103,9 @@ They look basically the same.
 
 ### Solution 1 (❌)
 
-In my mind, I compressed the `2-D` picture into `1-D` line, with overlaps (if there is any).
+In my mind, I compressed the `2-D` picture into a `1-D` line, with overlaps (if there are any).
 
-At first, I sorted the `points` by $x_{start}$. Then I planned to find if there was a overlap with next balloon.
+At first, I sorted the `points` by $x_{start}$. Then I planned to find if there was an overlap with the next balloon.
 
 If there was, I updated the left end. (But I made a mistake here: I forgot to update the right end.)
 
@@ -140,7 +140,7 @@ public:
 
 ### Solution 2 (✅)
 
-After I updated the right end. It was AC.
+After I updated the right end. It was `AC`.
 
 ```c++
 class Solution {
@@ -169,3 +169,87 @@ public:
 ```
 
 ![452-2](Pictures/452-2.png)
+
+----
+
+## [406. Queue Reconstruction by Height (Medium)](https://leetcode.com/problems/queue-reconstruction-by-height/)
+
+### Solution 1 (✅)
+
+I racked my brain to find out how to use Greedy to solve this problem. According to the hint, the point is to locate them from the people with the smallest height.
+
+Thanks a lot! However, after I sorted the `people`, what's next?
+
+Again, I racked my brain.
+
+Then I thought: since the `people[i][1]` means how many people in front are equal to or higher than `people[i]`, maybe I should use a variable `skip` to record something. The "something" is the space I should skip.
+
+Because, you know, if `people[i]` is gonna be put in `ans[j]`, the `ans[j]` should at least be empty.
+
+So, I programmed this solution.
+
+```c++
+class Solution {
+public:
+    static bool cmp(vector<int> &a, vector<int> &b) {
+        return a[0] == b[0] ? a[1] < b[1] : a[0] < b[0];
+    }
+    vector<vector<int>> reconstructQueue(vector<vector<int>>& people) {
+        int N = people.size();
+        vector<vector<int>> ans(N, {-1, -1});
+        sort(people.begin(), people.end(), cmp);
+        ans[people[0][1]] = people[0];
+        for(int i = 1; i < N; i++){
+            int skip = people[i][1];
+            for(int j = 0; j < N; j++){
+                if(skip == 0 && ans[j][0] == -1){
+                    ans[j] = people[i];
+                    break;
+                }
+                if(skip != 0 && (ans[j][0] == -1 || ans[j][0] >= people[i][0]))
+                    skip--;
+            }
+        }
+        return ans;
+    }
+};
+```
+
+I was kind of uncertain and a little concerned. But, fortunately, it turned out this solution is not bad.
+
+![406-1](Pictures/406-1.png)
+
+
+
+### Solution 2 (✅)
+
+I was just curious if there were any better solutions. And I found [sanjaydwk8](https://leetcode.com/sanjaydwk8/)'s [solution](https://leetcode.com/problems/queue-reconstruction-by-height/solutions/3086123/accepted-easy-solution-short-simple-best-method/). Even though the performance seemed not as great as mine, this solution is much easier to understand.
+
+Differently, this one sorted the `people` from the tallest to the smallest. The smaller persons are "invisible" for the taller ones, and hence one could first arrange the tallest guys as if there was no one else.
+
+After that, all we need is just to `insert` each people instead of doing intricate comparisons and calculation.
+
+```c++
+class Solution {
+public:
+    static bool cmp(vector<int>& a, vector<int>& b) {
+        return a[0] == b[0] ? a[1] < b[1] : a[0] > b[0];
+    }
+    vector<vector<int>> reconstructQueue(vector<vector<int>>& people) {
+        int N = people.size();
+        sort(people.begin(), people.end(), cmp);
+        vector<vector<int>> ans;
+        for(int i = 0; i < N; i++)
+            ans.insert(ans.begin()+people[i][1], people[i]);
+        return ans;
+    }
+};
+```
+
+![406-2](Pictures/406-2.png)
+
+----
+
+## [121. Best Time to Buy and Sell Stock (Easy)](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
+
+### Solution 1 (✅)
