@@ -485,4 +485,147 @@ public:
 
 ## [665. Non-decreasing Array (Medium)](https://leetcode.com/problems/non-decreasing-array/)
 
-### Solution 1 (✅)
+### Solution 1 (❌)
+
+As soon as I saw the pictures from [TlTAN](https://leetcode.com/TlTAN/)'s [solution](https://leetcode.com/problems/non-decreasing-array/solutions/2193070/c-simple-code-full-explanation/), I grabbed the key points suddenly.
+
+<img src="Pictures/665-1.png" alt="665-1" style="zoom:40%;" />
+
+<img src="Pictures/665-2.png" alt="665-2" style="zoom:40.5%;" />
+
+However, I still got a `Runtime error` when the teatcase was `[1]`.
+
+```c++
+class Solution {
+public:
+    bool checkPossibility(vector<int>& nums) {
+        int N = nums.size(), deleted = 0;
+        if(nums[0] > nums[1]){
+            deleted++;
+            nums[0] = nums[1];
+        }
+        for(int i = 1; i < N-1; i++){
+            if(deleted > 1) return false;
+            if(nums[i] > nums[i+1]){
+                deleted++;
+                // delete nums[i]
+                if(nums[i-1] <= nums[i+1])
+                    nums[i] = nums[i-1];
+                // delete nums[i+1]
+                else
+                    nums[i+1] = nums[i];
+            }
+        }
+        return deleted <= 1;
+    }
+};
+```
+
+![665-3](Pictures/665-3.png)
+
+### Solution 2 (✅)
+
+This time, I considered the **<u>robustness</u>**. And got this solution.
+
+```c++
+class Solution {
+public:
+    bool checkPossibility(vector<int>& nums) {
+        int N = nums.size(), deleted = 0;
+        if(N == 1)  return true;
+        
+        if(nums[0] > nums[1]){
+            deleted++;
+            nums[0] = nums[1];
+        }
+        for(int i = 1; i < N-1; i++){
+            if(deleted > 1) return false;
+            if(nums[i] > nums[i+1]){
+                deleted++;
+                // delete nums[i]
+                if(nums[i-1] <= nums[i+1])
+                    nums[i] = nums[i-1];
+                // delete nums[i+1]
+                else
+                    nums[i+1] = nums[i];
+            }
+        }
+        return deleted <= 1;
+    }
+};
+```
+
+![665-4](Pictures/665-4.png)
+
+### Solution 3(❌)
+
+I tried to simplify my solution.
+
+```c++
+class Solution {
+public:
+    bool checkPossibility(vector<int>& nums) {
+        int N = nums.size(), deleted = 0;
+        if(N == 1)  return true;
+        
+        for(int i = 0; i < N-1; i++){
+            if(deleted > 1) return false;
+            if(nums[i] > nums[i+1]){
+                deleted++;
+                // delete nums[i]
+                if(nums[i-1] <= nums[i+1] || i == 0)
+                    nums[i] = nums[i+1];
+                // delete nums[i+1]
+                else
+                    nums[i+1] = nums[i];
+            }
+        }
+        return deleted <= 1;
+    }
+};
+```
+
+But I got another `Runtime error`. **<u>Can you find out the reason?</u>**
+
+![665-5](Pictures/665-5.png)
+
+
+
+### Solution 4 (✅)
+
+It turned out in the `if` statement of `// delete nums[i]`, I should check `i == 0` first. Otherwise, `nums[i-1]` could be **out of bounds**.
+
+```c++
+class Solution {
+public:
+    bool checkPossibility(vector<int>& nums) {
+        int N = nums.size(), deleted = 0;
+        if(N == 1)  return true;
+        
+        for(int i = 0; i < N-1; i++){
+            if(deleted > 1) return false;
+            if(nums[i] > nums[i+1]){
+                deleted++;
+                // delete nums[i]
+                if(i == 0 || nums[i-1] <= nums[i+1])
+                    nums[i] = nums[i+1];
+                // delete nums[i+1]
+                else
+                    nums[i+1] = nums[i];
+            }
+        }
+        return deleted <= 1;
+    }
+};
+```
+
+![665-6](Pictures/665-6.png)
+
+
+
+At last, I've been asking myself a question all the time——can I give a solution **<u>without changing</u>** the data itself? For now, I have no answer. But I will figure it out!
+
+----
+
+## [53. Maximum Subarray (Medium)](https://leetcode.com/problems/maximum-subarray/)
+
