@@ -459,3 +459,30 @@ public:
 ## [392. Is Subsequence (Easy)](https://leetcode.com/problems/is-subsequence/)
 
 ### Solution 1 (✅)
+
+I felt like it is a `two pointer` problem instead of a typical `greedy` problem. And this time, the easy problem is easy for real.
+
+```c++
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        int i = 0, j = 0, sizeS = s.size(), sizeT = t.size();
+        while(i < sizeS && j < sizeT){
+            if(s[i] == t[j]){
+                i++;
+                j++;
+            }
+            else    j++;
+        }
+        return i == sizeS;
+    }
+};
+```
+
+![392-1](Pictures/392-1.png)
+
+----
+
+## [665. Non-decreasing Array (Medium)](https://leetcode.com/problems/non-decreasing-array/)
+
+### Solution 1 (✅)
