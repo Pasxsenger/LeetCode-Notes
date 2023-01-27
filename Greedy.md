@@ -363,3 +363,29 @@ This story tells us never to underestimate any "easy" problems.
 ## [122. Best Time to Buy and Sell Stock II (Medium)](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/)
 
 ### Solution 1 (✅)
+
+For me, this one is much easier than last one.
+
+```c++
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int N = prices.size(), max_profit = 0;
+        for(int i = 1; i < N; i++){
+            if(prices[i] > prices[i-1])
+                max_profit += prices[i] - prices[i-1];
+        }
+        return max_profit;
+    }
+};
+```
+
+![122-1](Pictures/122-1.png)
+
+----
+
+## [605. Can Place Flowers (Easy)](https://leetcode.com/problems/can-place-flowers/)
+
+Another easy problem. Hmmm... Let me see...
+
+### Solution 1 (✅)
