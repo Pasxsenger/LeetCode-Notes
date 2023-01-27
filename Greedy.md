@@ -389,3 +389,73 @@ public:
 Another easy problem. Hmmm... Let me see...
 
 ### Solution 1 (✅)
+
+I thought I was stucked on some points. And I came up a very complicated and unreadable solution.
+
+```c++
+class Solution {
+public:
+    bool canPlaceFlowers(vector<int>& flowerbed, int n) {
+        int N = flowerbed.size(), cnt = 0;
+        if(N == 1 && flowerbed[0] == 0) cnt++;
+        if(N == 2 && flowerbed[0] == 0 && flowerbed[1] == 0) cnt++;
+        if(N >= 3){
+            if(flowerbed[0] == 0 && flowerbed[1] == 0){
+                cnt++;
+                flowerbed[0] = 1;
+            }
+            for(int i = 1; i < N-1; i++){
+                if(flowerbed[i-1] == 0 && flowerbed[i] == 0 && flowerbed[i+1] == 0){
+                    cnt++;
+                    flowerbed[i] = 1;
+                    i++;
+                }
+                if(cnt >= n)    break;
+            }
+            if(flowerbed[N-1] == 0 && flowerbed[N-2] == 0) {
+                cnt++;
+                flowerbed[N-1] = 1;
+            }
+        }
+        return cnt >= n;
+    }
+};
+```
+
+![605-1](Pictures/605-1.png)
+
+### Solution 2 (✅)
+
+After I referred to the [Official Solution](https://leetcode.com/problems/can-place-flowers/solutions/127632/can-place-flowers/), I made some progress.
+
+As you can see, the structure of the solution is much more concise. 
+
+```c++
+class Solution {
+public:
+    bool canPlaceFlowers(vector<int>& flowerbed, int n) {
+        int N = flowerbed.size(), cnt = 0;
+        for(int i = 0; i < N; i++){
+            if(flowerbed[i] == 0){
+                bool left_empty = (i == 0) || (flowerbed[i-1] == 0);
+                bool right_empty = (i == N-1) || (flowerbed[i+1] == 0);
+                if(left_empty && right_empty){
+                    cnt++;
+                    flowerbed[i] = 1;
+                    i++;
+                }
+            }
+            if(cnt >= n)    return true;
+        }
+        return cnt >= n;
+    }
+};
+```
+
+![605-2](Pictures/605-2.png)
+
+----
+
+## [392. Is Subsequence (Easy)](https://leetcode.com/problems/is-subsequence/)
+
+### Solution 1 (✅)
