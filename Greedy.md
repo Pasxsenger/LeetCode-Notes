@@ -629,3 +629,113 @@ At last, I've been asking myself a question all the time——can I give a solut
 
 ## [53. Maximum Subarray (Medium)](https://leetcode.com/problems/maximum-subarray/)
 
+### Solution 1 (✅)
+
+After 3 weeks without LeetCode practice, it became a little bit harder to me.
+
+I checked [archit91](https://leetcode.com/archit91/)'s [solution](https://leetcode.com/problems/maximum-subarray/solutions/1595195/c-python-7-simple-solutions-w-explanation-brute-force-dp-kadane-divide-conquer/), and solved it by **Divide & Conquer**.
+
+There are 3 parts to consider:
+
+- `[left, mid-1]`
+- `[mid+1, right]`
+- `[L', R'] = [L', mid-1] + [mid] + [mid+1,R']`, where `L' >= L` and `R' <= R`
+
+```c++
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        return maxSubArray(nums, 0, nums.size()-1);
+    }
+    int maxSubArray(vector<int>& nums, int left, int right){
+        if(left > right)    return INT_MIN;
+        int mid = (left + right) / 2;
+        int left_sum = 0, right_sum = 0;
+        for(int i = mid-1, temp_sum = 0; i >= left; i--){
+            temp_sum += nums[i];
+            left_sum = max(left_sum, temp_sum);
+        }
+        for(int i = mid+1, temp_sum = 0; i <= right; i++){
+            temp_sum += nums[i];
+            right_sum = max(right_sum, temp_sum);
+        }
+        return max({maxSubArray(nums, left, mid-1), maxSubArray(nums, mid+1, right), left_sum+nums[mid]+right_sum});
+    }
+};
+```
+
+
+
+This solution is not efficient at all!
+
+![53-1](Pictures/53-1.png)
+
+
+
+
+
+### Solution 2 (✅)
+
+Still in [archit91](https://leetcode.com/archit91/)'s [solution](https://leetcode.com/problems/maximum-subarray/solutions/1595195/c-python-7-simple-solutions-w-explanation-brute-force-dp-kadane-divide-conquer/), I found a more efficient way, which is ***Dynamic Programming - Tabulation***.
+
+The key point is:
+
+* `dp[0][]` records the current local max subarray sum. Eg: `dp[0][i] = max(nums[i], dp[0][i-1]+nums[i])` means either the current subarray can continue to `nums[i]`, or the current subarray ends and use `nums[i]`as the beginning of a new subarray.
+* `dp[1][]` records the global max subarray sum. 
+
+```c++
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int N = nums.size();
+        vector<vector<int>> dp(2, vector<int>(N));
+        dp[0][0] = dp[1][0] = nums[0];
+        for(int i = 1; i < N; i++){
+            dp[0][i] = max(nums[i], dp[0][i-1]+nums[i]); //local max: [i,...] or [..., i]
+            dp[1][i] = max(dp[0][i], dp[1][i-1]);   //global max: local_max or previous_global_max
+        }
+        return dp[1][N-1];
+    }
+};
+```
+
+
+
+This one is a little better.
+
+![53-2](Pictures/53-2.png)
+
+
+
+### Solution 3 (✅)
+
+And I was shocked by a very short solution in [archit91](https://leetcode.com/archit91/)'s [solution](https://leetcode.com/problems/maximum-subarray/solutions/1595195/c-python-7-simple-solutions-w-explanation-brute-force-dp-kadane-divide-conquer/), which is ***Kadane's Algorithm***.
+
+This algorithm use two integers instead of a two-row vector.
+
+```c++
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int local_max = 0, global_max = INT_MIN;
+        for(int i: nums){
+            local_max = max(i, i+local_max);
+            global_max = max(global_max, local_max);
+        }
+        return global_max;
+    }
+};
+```
+
+
+
+Simple and efficient!   : - )
+
+![53-3](Pictures/53-3.png)
+
+----
+
+
+
+## [763. Partition Labels (Medium)](https://leetcode.com/problems/partition-labels/)
+
