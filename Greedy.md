@@ -36,7 +36,7 @@ public:
 
 ### Solution 1 (✅)
 
-I had no clue so I searched some solutions. According to [mrityujha](https://leetcode.com/mrityujha/)'s [solution](https://leetcode.com/problems/non-overlapping-intervals/solutions/792726/c-simple-o-nlogn-solution-with-explanation/comments/725788), I sorted the `intervals` by the **start points**.
+I had no clue so I searched for some solutions. According to [mrityujha](https://leetcode.com/mrityujha/)'s [solution](https://leetcode.com/problems/non-overlapping-intervals/solutions/792726/c-simple-o-nlogn-solution-with-explanation/comments/725788), I sorted the `intervals` by the **start points**.
 
 By the way, through this problem, especially the `cmp()`, I reviewed how C++ functions **pass parameters**. Basically, there are 3 ways: `pass-by-value`, `pass-by-address(*)`, `pass-by-reference(&)(recommended)`
 
@@ -70,7 +70,7 @@ public:
 
 ### Solution 2 (✅)
 
-However, many solutions said that the proper way is to sort `intervals` by the **end points**. And the reason is that if we pick the one ends earlier, we can get more capacity for rest intervals.
+However, many solutions said that the proper way is to sort `intervals` by the **end points**. And the reason is that if we pick the one that ends earlier, we can get more capacity for rest intervals.
 
 ```c++
 class Solution {
@@ -178,7 +178,7 @@ public:
 
 I racked my brain to find out how to use Greedy to solve this problem. According to the hint, the point is to locate them from the people with the smallest height.
 
-Thanks a lot! However, after I sorted the `people`, what's next?
+Thanks a lot! However, after I sorted the `people`, what was next?
 
 Again, I racked my brain.
 
@@ -225,9 +225,9 @@ I was kind of uncertain and a little concerned. But, fortunately, it turned out 
 
 I was just curious if there were any better solutions. And I found [sanjaydwk8](https://leetcode.com/sanjaydwk8/)'s [solution](https://leetcode.com/problems/queue-reconstruction-by-height/solutions/3086123/accepted-easy-solution-short-simple-best-method/). Even though the performance seemed not as great as mine, this solution is much easier to understand.
 
-Differently, this one sorted the `people` from the tallest to the smallest. The smaller persons are "invisible" for the taller ones, and hence one could first arrange the tallest guys as if there was no one else.
+Differently, this one sorted the `people` from the tallest to the smallest. The smaller persons are "invisible" to the taller ones, and hence one could first arrange the tallest guys as if there was no one else.
 
-After that, all we need is just to `insert` each people instead of doing intricate comparisons and calculation.
+After that, all we need is just to `insert` each people instead of doing intricate comparisons and calculations.
 
 ```c++
 class Solution {
@@ -328,7 +328,7 @@ public:
 };
 ```
 
-It passed the testcase 198, but failed to pass the testcase 199. 
+It passed test case 198, but failed to pass test case 199. 
 
 Ok! Fine! I surrendered. Now I'm gonna try some real algorithms.
 
@@ -364,7 +364,7 @@ This story tells us never to underestimate any "easy" problems.
 
 ### Solution 1 (✅)
 
-For me, this one is much easier than last one.
+For me, this one is much easier than the last one.
 
 ```c++
 class Solution {
@@ -390,7 +390,7 @@ Another easy problem. Hmmm... Let me see...
 
 ### Solution 1 (✅)
 
-I thought I was stucked on some points. And I came up a very complicated and unreadable solution.
+I thought I was stuck on some points. And I came up with a very complicated and unreadable solution.
 
 ```c++
 class Solution {
@@ -493,7 +493,7 @@ As soon as I saw the pictures from [TlTAN](https://leetcode.com/TlTAN/)'s [solut
 
 <img src="Pictures/665-2.png" alt="665-2" style="zoom:40.5%;" />
 
-However, I still got a `Runtime error` when the teatcase was `[1]`.
+However, I still got a `Runtime error` when the test case was `[1]`.
 
 ```c++
 class Solution {
@@ -593,7 +593,7 @@ But I got another `Runtime error`. **<u>Can you find out the reason?</u>**
 
 ### Solution 4 (✅)
 
-It turned out in the `if` statement of `// delete nums[i]`, I should check `i == 0` first. Otherwise, `nums[i-1]` could be **out of bounds**.
+It turned out that in the `if` statement of `// delete nums[i]`, I should check `i == 0` first. Otherwise, `nums[i-1]` could be **out of bounds**.
 
 ```c++
 class Solution {
@@ -631,7 +631,7 @@ At last, I've been asking myself a question all the time——can I give a solut
 
 ### Solution 1 (✅)
 
-After 3 weeks without LeetCode practice, it became a little bit harder to me.
+After 3 weeks without LeetCode practice, it became a little bit harder for me.
 
 I checked [archit91](https://leetcode.com/archit91/)'s [solution](https://leetcode.com/problems/maximum-subarray/solutions/1595195/c-python-7-simple-solutions-w-explanation-brute-force-dp-kadane-divide-conquer/), and solved it by **Divide & Conquer**.
 
@@ -676,7 +676,7 @@ This solution is not efficient at all!
 
 ### Solution 2 (✅)
 
-Still in [archit91](https://leetcode.com/archit91/)'s [solution](https://leetcode.com/problems/maximum-subarray/solutions/1595195/c-python-7-simple-solutions-w-explanation-brute-force-dp-kadane-divide-conquer/), I found a more efficient way, which is ***Dynamic Programming - Tabulation***.
+Still, in [archit91](https://leetcode.com/archit91/)'s [solution](https://leetcode.com/problems/maximum-subarray/solutions/1595195/c-python-7-simple-solutions-w-explanation-brute-force-dp-kadane-divide-conquer/), I found a more efficient way, which is ***Dynamic Programming - Tabulation***.
 
 The key point is:
 
@@ -711,7 +711,7 @@ This one is a little better.
 
 And I was shocked by a very short solution in [archit91](https://leetcode.com/archit91/)'s [solution](https://leetcode.com/problems/maximum-subarray/solutions/1595195/c-python-7-simple-solutions-w-explanation-brute-force-dp-kadane-divide-conquer/), which is ***Kadane's Algorithm***.
 
-This algorithm use two integers instead of a two-row vector.
+This algorithm uses two integers instead of a two-row vector.
 
 ```c++
 class Solution {
@@ -739,4 +739,133 @@ Simple and efficient!   : - )
 
 ## [763. Partition Labels (Medium)](https://leetcode.com/problems/partition-labels/)
 
-Test
+### Solution 1 (✅)
+
+My idea is: 
+
+* Traverse the string, and record each letter's first and last appearance places in a vector `appearance`;
+
+* Sort the vector and remove absent letters, which are recorded as `{-1, -1}`, using `erase(it)`;
+
+* Find the substrings
+
+  * The first appearance index of the letter lies in the current substring, which means this substring has not ended;
+
+    * If all of this letter's appearance is in the substring, nothing needs to be changed;
+    * If some lie out of the current substring, we need to update the `end_substr` as the `appearance[i].second`;
+
+  * The first appearance index of the letter lies out of the current substring, which means this substring has ended and we need to start a new substring
+
+* DON'T FORGET TO PUSH BACK THE LAST SUBSTRING SIZE! (Ends at the `s.size()-1`)
+
+```c++
+class Solution {
+public:
+    vector<int> partitionLabels(string s) {
+        //Record the first and last place of each letter's appearance
+        vector<pair<int,int>> appearance;
+        for(int i = 0; i < 26; i++)
+            appearance.push_back(make_pair(-1,-1));
+
+        int N = s.size();
+        for(int i = 0; i < N; i++){
+            int letter = s[i] - 'a';
+            if(appearance[letter].first == -1){
+                appearance[letter].first = i;
+                appearance[letter].second = i;
+            }
+            else
+                appearance[letter].second = i;
+        }
+
+
+        //Sort by the first appearance place
+        sort(appearance.begin(), appearance.end(), cmp);
+
+        //Remove absent letters
+        for(auto it = appearance.begin(); it != appearance.end();){
+            if((*it).first != -1)
+                break;
+            it = appearance.erase(it);
+        }
+
+        //Find out substrings
+        vector<int> ans;
+        vector<int> end_substr;
+        end_substr.push_back(-1);
+        end_substr.push_back(appearance[0].second);
+        for(int i = 0; i < appearance.size(); i++){
+            if(appearance[i].first == -1)
+                continue;
+            //The first appearance of this letter lies in current substring
+            //which means current substring has not ended 
+            if(end_substr.back() >= appearance[i].first){   
+                //if this letter is contained in the substring
+                //then nothing happens
+
+                //if this letter only overlaps with the substring
+                //then move the end of the substring
+                if(appearance[i].second > end_substr.back())
+                    end_substr.back() = appearance[i].second;
+            }
+            //The substring has ended and start a new substring
+            else{
+                ans.push_back(end_substr.back() - end_substr[end_substr.size()-2]);
+                end_substr.push_back(appearance[i].second);
+            }
+        }
+        ans.push_back(N-1 - end_substr[end_substr.size()-2]);
+        return ans;
+    }
+
+    static bool cmp(pair<int,int> a, pair<int,int> b){
+        return a < b;
+    }
+};
+```
+
+![764-1](Pictures/764-1.png)
+
+
+
+
+
+### Solution 2 (✅)
+
+After reading the [hi-malik](https://leetcode.com/hi-malik/)'s [solution](https://leetcode.com/problems/partition-labels/solutions/1868842/java-c-visually-explaineddddd/), I realized that there is no need to record the first appearance positions.
+
+Actually, if use a `unordered_map` to record, the order of the map corresponds to the order of the letters appearing in the string.
+
+```c++
+class Solution {
+public:
+    vector<int> partitionLabels(string s) {
+        unordered_map<char,int> appearance;
+        int N = s.size();
+        // filling impact of character's
+        for(int i = 0; i < N; i++){
+            char ch = s[i];
+            appearance[ch] = i;
+        }
+        // making of result
+        vector<int> ans;
+        int prev_end = -1;
+        int end_substr = 0;
+        
+        for(int i = 0; i < N; i++){
+            end_substr = max(end_substr, appearance[s[i]]);
+            if(end_substr == i){
+                // partition time
+                ans.push_back(end_substr - prev_end);
+                prev_end = end_substr;
+            }
+        }
+        return ans;
+    }
+};
+```
+
+![764-2](Pictures/764-2.png)
+
+---
+

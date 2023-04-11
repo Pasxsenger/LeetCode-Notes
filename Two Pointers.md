@@ -36,9 +36,9 @@ public:
 
 ### Solution 2 (✅)
 
-After checked the [Official Solution](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/solutions/127822/two-sum-ii-input-array-is-sorted/), I found that I thought about use a variable to represent the sum, so that it doesn't have to do the sum over and over again during the comparison. 
+After checking the [Official Solution](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/solutions/127822/two-sum-ii-input-array-is-sorted/), I found that I thought about using a variable to represent the sum, so that it doesn't have to do the sum over and over again during the comparison. 
 
-But emmm, I was lazy, I have to admit. 
+But hmmm, I was lazy, I have to admit. 
 
 Anyway, it turns out that this little trick does work, which improved the **runtime**.
 
@@ -150,7 +150,7 @@ Line 6: Char 20: runtime error: signed integer overflow: 829921 + 2146654224 can
 SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior prog_joined.cpp:15:20
 ```
 
-It turns out that the sum is too large to be an `int`. That's fine. And jump over other two wrong answers.
+It turns out that the sum is too large to be an `int`. That's fine. And jump over the other two wrong answers.
 
 
 
@@ -188,7 +188,7 @@ This is easy, right?
 
 Initialize two pointers. 
 
-Pointer `i` points to the left end `0` and traversed to the right end. 
+Pointer `i` points to the left end `0` and traverses to the right end. 
 
 Pointer `j` points to the right end `s.size()-1` and traverses to the left end.
 
@@ -234,7 +234,7 @@ public:
 
 ### Solution 2 (✅)
 
-After checked the [Official Solution](https://leetcode.com/problems/reverse-vowels-of-a-string/solutions/2484211/reverse-vowels-of-a-string/?orderBy=most_votes), I simplified my `isvowel()` function. And the **runtime** became shorter.
+After checking the [Official Solution](https://leetcode.com/problems/reverse-vowels-of-a-string/solutions/2484211/reverse-vowels-of-a-string/?orderBy=most_votes), I simplified my `isvowel()` function. And the **runtime** became shorter.
 
 ```c++
 class Solution {
@@ -271,7 +271,7 @@ public:
 
 It seems like there is a `swap` function. I didn't know it hhhhh.
 
-Also, I simplified the code in `if` block.
+Also, I simplified the code in the `if` block.
 
 The **memory** that it used became smaller.
 
@@ -384,7 +384,7 @@ public:
 
 ## [88. Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/)
 
-The point is to iterate through the vectors **from the tail instead of head**.
+The point is to iterate through the vectors **from the tail instead of the head**.
 
 ### Solution 1 (✅)
 
@@ -450,7 +450,7 @@ And it turned out that it was **not efficient at all**.
 
 ### Solution 2 (✅)
 
-So I learned from [KnockCat](https://leetcode.com/KnockCat/)'s [solution](https://leetcode.com/problems/linked-list-cycle/solutions/1829489/c-easy-to-understand-2-pointer-fast-slow/). To be more specific, it was called **"tortoise and the hare algorithm"** using two pointers. The `hare` runs faster, which takes two steps at one time. And the `tortoise` runs slower, which takes one step at a time.
+So I learned from [KnockCat](https://leetcode.com/KnockCat/)'s [solution](https://leetcode.com/problems/linked-list-cycle/solutions/1829489/c-easy-to-understand-2-pointer-fast-slow/). To be more specific, it was called the **"tortoise and the hare algorithm"** using two pointers. The `hare` runs faster, which takes two steps at one time. And the `tortoise` runs slower, which takes one step at a time.
 
 If there is a loop, the `hare` and the `tortoise` will certainly meet each other.
 
@@ -496,11 +496,11 @@ public:
 
 ### Solution 1 (✅)
 
-I iterated the `dictionary` vector and compared each string in `dictionary` with `s`, so that I could find out if `dictionary[i]` is a substring of `s`. 
+I iterated the `dictionary` vector and compared each string in the `dictionary` with `s`, so that I could find out if `dictionary[i]` is a substring of `s`. 
 
 If it is, it will be pushed back into vector `ans`, which was initialized with an empty string `""`.
 
-One blip was about the `cmp()`. At first I met the problem `reference to non-static member function must be called`. After I added `static`, it was ok.
+One blip was about the `cmp()`. At first, I met the problem `reference to non-static member function must be called`. After I added `static`, it was ok.
 
 ```c++
 class Solution {

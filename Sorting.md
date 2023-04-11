@@ -22,7 +22,7 @@ public:
 
 ### Solution 2 (✅)
 
-With [jianchao-li](https://leetcode.com/jianchao-li/)'s [solutions](https://leetcode.com/problems/kth-largest-element-in-an-array/solutions/60309/c-stl-partition-and-heapsort/), I learned `min-heap sort` built with `priority queue`.
+With [jianchao-li](https://leetcode.com/jianchao-li/)'s [solutions](https://leetcode.com/problems/kth-largest-element-in-an-array/solutions/60309/c-stl-partition-and-heapsort/), I learned `min-heap sort` built with a `priority queue`.
 
 ```c++
 class Solution {
@@ -49,7 +49,7 @@ It can be foreseen that it's not as efficient as sort. But it's not the point.
 
 ### Solution 1 (✅)
 
-With [k_joshi](https://leetcode.com/k_joshi/)'s [solution](https://leetcode.com/problems/top-k-frequent-elements/solutions/1927997/easy-and-simple-c-code-bucket-sort-o-n-linear-time-complexity/), I used `bucket sort`, which costed a lot of space.
+With [k_joshi](https://leetcode.com/k_joshi/)'s [solution](https://leetcode.com/problems/top-k-frequent-elements/solutions/1927997/easy-and-simple-c-code-bucket-sort-o-n-linear-time-complexity/), I used `bucket sort`, which costs a lot of space.
 
 ```c++
 class Solution {
@@ -158,7 +158,7 @@ public:
 
 Similar to the last problem, I used an `unordered_map` to record frequencies. Then used `priority_queue` to build a `max-heap`. At last, composed the string `ans` by every root node.
 
-And I learned to use `std::string()` to form up a repeated string, so that I didn't have to use loop to form it.
+And I learned to use `std::string()` to form a repeated string, so that I didn't have to use a loop to form it.
 
 ```c++
 class Solution {
@@ -223,7 +223,7 @@ As a result, the performance was not good of course.
 
 Then I tried [chiragBavishi](https://leetcode.com/chiragBavishi/)'s [solution](https://leetcode.com/problems/sort-colors/solutions/3040429/c-solution-beat-100/) which beat `100%` on runtime.
 
-The main idea is to set two pointers. One points to the head, and the other points to the end. Then iterate the array and swap with the pointer `low` if `nums[index] == 0` and swap with pointer `high ` if `nums[index] == 2`, what left in the middle will naturally be `1`.
+The main idea is to set two pointers. One points to the head, and the other points to the end. Then iterate the array and swap with the pointer `low` if `nums[index] == 0` and swap with the pointer `high ` if `nums[index] == 2`, what is left in the middle will naturally be `1`.
 
 With this algorithm, we only have to iterate the `nums` once.
 
