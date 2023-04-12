@@ -159,9 +159,128 @@ public:
 
 The key is `%`.
 
-![744-2](Pictures/744-2.png)![744-4](Pictures/744-4.png)
+![744-4](Pictures/744-4.png)
 
 ---
 
 ## [540. Single Element in a Sorted Array (Medium)](https://leetcode.com/problems/single-element-in-a-sorted-array/)
+
+To find out whether left half or right half we should choose, we can decide with the left element and the right element of `nums[middle]`.
+
+* If `nums[middle] % 2 == 0`
+  * If it's equal to its right element `nums[middle] == nums[middle+1]`, we should search in the right half
+  * If it's equal to its left element `nums[middle] == nums[middle-1]`, we should search in the left half
+* If `nums[middle] % 2 != 0`
+  * If it's equal to its left element `nums[middle] == nums[middle-1]`, we should search in the right half
+  * If it's equal to its right element `nums[middle] == nums[middle+1]`, we should search in the left half
+
+### Solution 1 (❌)
+
+```C++
+class Solution {
+public:
+    int singleNonDuplicate(vector<int>& nums) {
+        int N = nums.size();
+        if(N == 1)
+            return nums[0];
+        int left = 0, right = N - 1, middle = right / 2;
+        while(left <= right){
+            if(nums[middle] != nums[middle-1] && nums[middle] != nums[middle+1])
+                return nums[middle];
+            if(middle % 2 == 0){
+                if(nums[middle] == nums[middle+1])
+                    left = middle + 1;
+                else
+                    right = middle - 1;
+            }
+            else{
+                if(nums[middle] == nums[middle-1])
+                    left = middle + 1;
+                else
+                    right = middle - 1;
+            }
+            middle = left + (right - left) / 2;
+        }
+        return nums[left];
+    }
+};
+```
+
+And I had a `Runtime Error`.
+
+<img src="Pictures/540-1.png" alt="540-1" style="zoom:50%;" />
+
+### Solution 2 (✅)
+
+After refining the boundary, I got the correct solution.
+
+```C++
+class Solution {
+public:
+    int singleNonDuplicate(vector<int>& nums) {
+        int N = nums.size();
+        if(N == 1)
+            return nums[0];
+        int left = 0, right = N - 1, middle = right / 2;
+        while(left <= right){
+            if(middle == 0 && nums[middle] != nums[middle+1])
+                return nums[middle];
+            if(middle == N-1 && nums[middle] != nums[middle-1])
+                return nums[middle];
+            if(nums[middle] != nums[middle-1] && nums[middle] != nums[middle+1])
+                return nums[middle];
+            if(middle % 2 == 0){
+                if(nums[middle] == nums[middle+1])
+                    left = middle + 1;
+                else
+                    right = middle - 1;
+            }
+            else{
+                if(nums[middle] == nums[middle-1])
+                    left = middle + 1;
+                else
+                    right = middle - 1;
+            }
+            middle = left + (right - left) / 2;
+        }
+        return nums[left];
+    }
+};
+```
+
+![540-2](Pictures/540-2.png)
+
+### Solution 3 (✅)
+
+But I didn't think this solution was concise enough. So I read [logan138](https://leetcode.com/logan138/)'s [solution](https://leetcode.com/problems/single-element-in-a-sorted-array/solutions/627921/java-c-python3-easy-explanation-o-logn-o-1/).
+
+We have the same idea. And his solution is way more concise than mine.
+
+Still, the boundary decision is **<u>very important!</u>**
+
+```C++
+class Solution {
+public:
+    int singleNonDuplicate(vector<int>& nums) {
+        int left = 0, right = nums.size() - 1;
+        while(left < right){
+            int mid = left + (right - left) / 2;
+            if((mid % 2 == 0 && nums[mid] == nums[mid + 1]) || 
+            (mid % 2 == 1 && nums[mid] == nums[mid - 1]))
+                left = mid + 1;
+            else
+                right = mid;
+        }
+        return nums[left];
+    }
+};
+```
+
+![540-3](Pictures/540-3.png)
+
+---
+
+## [278. First Bad Version (Easy)](https://leetcode.com/problems/first-bad-version/)
+
+### Solution 1
 
