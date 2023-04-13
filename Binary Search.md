@@ -282,5 +282,35 @@ public:
 
 ## [278. First Bad Version (Easy)](https://leetcode.com/problems/first-bad-version/)
 
-### Solution 1
+### Solution 1 (✅)
+
+This problem is so simple. But the API stuff is a little interesting.
+
+```C++
+// The API isBadVersion is defined for you.
+// bool isBadVersion(int version);
+
+class Solution {
+public:
+    int firstBadVersion(int n) {
+        int left = 0, right = n-1, mid = right / 2;
+        while(left <= right){
+            if(isBadVersion(mid+1))
+                right = mid - 1;
+            else
+                left = mid + 1;
+            mid = left + (right - left) / 2;
+        }
+        return left + 1;
+    }
+};
+```
+
+![278-1](Pictures/278-1.png)
+
+---
+
+## [153. Find Minimum in Rotated Sorted Array (Medium)](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/)
+
+### Solution 1 (✅)
 
