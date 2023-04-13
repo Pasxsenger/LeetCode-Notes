@@ -314,3 +314,58 @@ public:
 
 ### Solution 1 (✅)
 
+The main idea is to find the original start. And I achieved it by the two ends of the given vector:
+
+```c++
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        int left = 0, right = nums.size()-1, mid = right / 2;
+        int flag = nums[right] < nums[0] ? nums[right] : nums[0];
+        while(left < right){
+            if(nums[mid] > flag)
+                left = mid + 1;
+            else{
+                right = mid;
+                flag = nums[mid];
+            }
+            mid = left + (right - left) / 2;
+        }
+        return nums[left] < flag ? nums[left] : flag;
+    }
+};
+```
+
+![153-1](Pictures/153-1.png)
+
+### Solution 2 (✅)
+
+And I read [jianchao-li](https://leetcode.com/jianchao-li/)'s [solution](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/solutions/48493/compact-and-clean-c-solution/comments/244739), which is a very clear and short one.
+
+```c++
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        int left = 0, right = nums.size()-1, mid = right / 2;
+        while(left < right && nums[left] > nums[right]){
+            if(nums[mid] >= nums[left])
+                left = mid + 1;
+            else
+                right = mid;
+            mid = left + (right - left) / 2;
+        }
+        return nums[left];
+    }
+};
+```
+
+And the result is really good.
+
+![153-2](Pictures/153-2.png)
+
+---
+
+## [34. Find First and Last Position of Element in Sorted Array (Medium)](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
+
+### Solution 1 (✅)
+
