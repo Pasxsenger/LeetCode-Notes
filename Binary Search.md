@@ -367,5 +367,239 @@ And the result is really good.
 
 ## [34. Find First and Last Position of Element in Sorted Array (Medium)](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
 
-### Solution 1 (✅)
+### Solution 1 (❌)
 
+I used 3 while loops, which was so intricate.
+
+* Loop1: find if the target is in the vector and return any one's position
+* Loop2: find the lower bound
+* Loop3: find the upper bound
+
+However, this solution met many errors. One of them is Runtime error, and I couldn't find out the reason.
+
+```c++
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        vector<int> ans(2, -1);
+        int N = nums.size();
+        int left = 0, right = N - 1, mid = right / 2;
+        while(left < right){
+            if(nums[mid] >= target)
+                right = mid;
+            else
+                left = mid + 1;
+            mid = left + (right - left) / 2;
+        }
+
+        if(nums[left] == target){
+            int left1 = 0, right1 = left, mid1 = right1 / 2;
+            while(left1 < right1){
+                if(nums[mid1] == target)
+                    right1 = mid1;
+                else
+                    left1 = mid1 + 1;
+                mid1 = left1 + (right1 - left1) / 2;
+            }
+            ans[0] = left1;
+
+            int left2 = left, right2 = N - 1, mid2 = left2 + (right2 - left2) / 2;
+            while(left2 < right2){
+                if(nums[mid2] == target)
+                    left2 = mid2;
+                else
+                    right = mid2 - 1;
+                mid2 = left2 + (right2 - left2) / 2;
+            }
+            ans[1] = right2;
+        }
+        return ans;
+    }
+};
+```
+
+<img src="Pictures/34-1.png" alt="34-1" style="zoom:50%;" />
+
+### Solution 2 (❌)
+
+And I looked for others' solutions. But when I tried this, the error still occurred.
+
+```c++
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        vector<int> ans(2, -1);
+        int left = 0, right = nums.size()-1, mid = right / 2;
+        //To decide if target is in this vector
+        while(left < right){
+            if(nums[mid] < target)
+                left = mid + 1;
+            else
+                right = mid;
+            mid = left + (right - left) / 2;
+        }
+        //If no, end this method
+        if(nums[left] != target)
+            return ans;
+
+        //If yes, continue to find the right end
+        ans[0] = left;
+        left = mid, right = nums.size()-1, mid = left + (right - left) / 2;
+        while(left < right){
+            if(nums[mid] == target && nums[mid+1] != target){
+                left = mid;
+                break;
+            }
+            if(nums[mid] > target)
+                right = mid + 1;
+            else
+                left = mid;
+            mid = left + (right - left) / 2;
+        }
+        ans[1] = left;
+        return ans;
+    }
+};
+```
+
+```
+Line 1034: Char 9: runtime error: reference binding to null pointer of type 'int' (stl_vector.h)
+SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_vector.h:1043:9
+```
+
+<img src="Pictures/34-2.png" alt="34-2" style="zoom:50%;" />
+
+### Solution 3 (❌)
+
+I was **SOOOOO** confused and annoyed.
+
+I was desperate to find out what the heck was that!
+
+And I noticed the one of the constraints:
+
+`0 <= nums.length <= 105`
+
+Then I started guessing: maybe it was because of the 0?
+
+So I add a if statement at the beginning.
+
+```c++
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        vector<int> ans(2, -1);
+        if(nums.size() == 0)
+            return ans;
+
+        int left = 0, right = nums.size()-1, mid = right / 2;
+        //To decide if target is in this vector
+        while(left < right){
+            if(nums[mid] < target)
+                left = mid + 1;
+            else
+                right = mid;
+            mid = left + (right - left) / 2;
+        }
+        //If no, end this method
+        if(nums[left] != target)
+            return ans;
+
+        //If yes, continue to find the right end
+        ans[0] = left;
+        left = mid, right = nums.size()-1, mid = left + (right - left) / 2;
+        while(left < right){
+            if(nums[mid] == target && nums[mid+1] != target){
+                left = mid;
+                break;
+            }
+            if(nums[mid] > target)
+                right = mid + 1;
+            else
+                left = mid;
+            mid = left + (right - left) / 2;
+        }
+        ans[1] = left;
+        return ans;
+    }
+};
+
+```
+
+The Runtime Error didn't show up.
+
+**HOWEVER**, I got another wrong answer.
+
+<img src="Pictures/34-3.png" alt="34-3" style="zoom:50%;" />
+
+### Solution 4 (✅)
+
+After debugging, I thought the problem was the way to update `left` and `right`.
+
+So, I changed is statements in the second  `While` loop.
+
+```c++
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        vector<int> ans(2, -1);
+        if(nums.size() == 0)
+            return ans;
+
+        int left = 0, right = nums.size()-1, mid = right / 2;
+        //To decide if target is in this vector
+        while(left < right){
+            if(nums[mid] < target)
+                left = mid + 1;
+            else
+                right = mid;
+            mid = left + (right - left) / 2;
+        }
+        //If no, end this method
+        if(nums[left] != target)
+            return ans;
+
+        //If yes, continue to find the right end
+        ans[0] = left;
+        left = mid, right = nums.size()-1, mid = left + (right - left) / 2;
+        while(left < right){
+            if(nums[mid] == target && nums[mid+1] != target){
+                left = mid;
+                break;
+            }
+            if(nums[mid] > target)
+                right = mid - 1;
+            else
+                left = mid + 1;
+            mid = left + (right - left) / 2;
+        }
+        ans[1] = left;
+        return ans;
+    }
+};
+```
+
+Finally, I got it accepted......
+
+![34-4](Pictures/34-4.png)
+
+### Solution 5 (✅)
+
+Just for fun, I copied an interesting answer using `lower_bound()`
+
+```c++
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int startingPosition = lower_bound(nums.begin(), nums.end(), target) - nums.begin();
+        int endingPosition = lower_bound(nums.begin(), nums.end(), target+1) - nums.begin() - 1;
+        if(startingPosition < nums.size() && nums[startingPosition] == target){
+            return {startingPosition, endingPosition};
+        }
+        return {-1, -1};
+    }
+};
+```
+
+So efficient!
+
+![34-5](Pictures/34-5.png)
