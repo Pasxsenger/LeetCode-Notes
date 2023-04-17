@@ -104,3 +104,49 @@ Seems better.
 
 ### Solution 1 (✅)
 
+I used [sdkaur](https://leetcode.com/sdkaur/)'s [solution](https://leetcode.com/problems/unique-binary-search-trees-ii/solutions/1849266/c-detailed-explanation-recursive-tree-with-comments/).
+
+```c++
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    vector<TreeNode*> generateTrees(int n) {
+       return generateSubTrees(1, n);
+    }
+    vector<TreeNode*> generateSubTrees(int start, int end) {
+        vector<TreeNode*> ans;
+        if(start > end){
+            ans.push_back(NULL);
+            return ans;
+        }
+        for(int i = start; i <= end; i++){
+            vector<TreeNode*> leftST = generateSubTrees(start, i-1);
+            vector<TreeNode*> rightST = generateSubTrees(i+1, end);
+            for(int j = 0; j < leftST.size(); j++){
+                for(int k = 0; k < rightST.size(); k++){
+                    TreeNode* root = new TreeNode(i);
+                    root->left = leftST[j];
+                    root->right = rightST[k];
+                    ans.push_back(root);
+                }
+            }
+        }
+        return ans;
+    }
+};
+```
+
+![95-1](Pictures/95-1.png)
+
+---
+
