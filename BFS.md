@@ -8,7 +8,7 @@
 
 At first, get rid of the edge conditions.
 
-Then, use `cell` to store every start points of each iteration.
+Then, use the `cell` to store every start points of each iteration.
 
 And use `directions` to try the 8 directions of each start point.
 
@@ -57,7 +57,48 @@ public:
 
 ### Solution 1 (✅)
 
+```c++
+class Solution {
+public:
+    int numSquares(int n) {
+        int root = sqrt(n);
+        if(root * root == n)
+            return 1;
+        
+        int steps = 0;
+        vector<bool> visited(n+1, false);
+        visited[n] = true;
+        queue<int> queue;
+        queue.push(n);
+        vector<int> perfects;
+        for(int i = 1; i <= root; i++)
+            perfects.push_back(i*i);
+        
+        while(!queue.empty()){
+            int size = queue.size();
+            steps++;
+            while(size-- > 0){
+                int curr = queue.front();
+                queue.pop();
+                for(auto sq: perfects){
+                    int next = curr - sq;
+                    if(next < 0)
+                        break;
+                    if(next == 0)
+                        return steps;
+                    if(visited[next])
+                        continue;
+                    visited[next] = true;
+                    queue.push(next);
+                }
+            }
+        }
+        return n;
+    }
+};
+```
 
+![279-1](Pictures/279-1.png)
 
 
 
