@@ -1,6 +1,20 @@
 # Two Pointers
 
-## [167. Two Sum II - Input Array Is Sorted (Medium)](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/)
+## Content
+
+* [167. Two Sum II - Input Array Is Sorted (Medium)](#167)
+* [633. Sum of Square Numbers (Medium)](#633)
+* [345. Reverse Vowels of a String (Easy)](#345)
+* [680. Valid Palindrome II (Easy)](#680)
+* [88. Merge Sorted Array (Easy)](#88)
+* [141. Linked List Cycle (Easy)](#141)
+* [524. Longest Word in Dictionary through Deleting (Medium)](#524)
+
+
+
+---
+
+## <span id="167">[167. Two Sum II - Input Array Is Sorted (Medium)](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/)</span>
 
 Nothing to say, it's not difficult.
 
@@ -95,7 +109,7 @@ public:
 
 
 
-## [633. Sum of Square Numbers (Medium)](https://leetcode.com/problems/sum-of-square-numbers/description/)
+## <span id="633">[633. Sum of Square Numbers (Medium)](https://leetcode.com/problems/sum-of-square-numbers/description/)</span>
 
 It seems easy, right? Just traverse from `0` to `sqrt(target)`.
 
@@ -184,7 +198,7 @@ This is easy, right?
 
 
 
-## [345. Reverse Vowels of a String (Easy)](https://leetcode.com/problems/reverse-vowels-of-a-string/)
+## <span id="345">[345. Reverse Vowels of a String (Easy)](https://leetcode.com/problems/reverse-vowels-of-a-string/)</span>
 
 Initialize two pointers. 
 
@@ -303,7 +317,7 @@ public:
 
 
 
-## [680. Valid Palindrome II](https://leetcode.com/problems/valid-palindrome-ii/)
+## <span id="680">[680. Valid Palindrome II (Easy)](https://leetcode.com/problems/valid-palindrome-ii/)</span>
 
 
 
@@ -382,7 +396,7 @@ public:
 
 
 
-## [88. Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/)
+## <span id="88">[88. Merge Sorted Array (Easy)](https://leetcode.com/problems/merge-sorted-array/)</span>
 
 The point is to iterate through the vectors **from the tail instead of the head**.
 
@@ -411,7 +425,7 @@ public:
 
 
 
-## [141. Linked List Cycle (Easy)](https://leetcode.com/problems/linked-list-cycle/)
+## <span id="141">[141. Linked List Cycle (Easy)](https://leetcode.com/problems/linked-list-cycle/)</span>
 
 I had no clue how to use two pointers in this problem. So I tried to record the pointer in each step instead of using two pointers. Then used `find()` to find out if this address had been visited.
 
@@ -492,7 +506,7 @@ public:
 
 
 
-## [524. Longest Word in Dictionary through Deleting (Medium)](https://leetcode.com/problems/longest-word-in-dictionary-through-deleting/)
+## <span id="524">[524. Longest Word in Dictionary through Deleting (Medium)](https://leetcode.com/problems/longest-word-in-dictionary-through-deleting/)</span>
 
 ### Solution 1 (✅)
 

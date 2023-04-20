@@ -9,11 +9,24 @@ To calculate the middle index, here are two ways:
 
 Since the first way may cause `add overflow`, the second way is safer.
 
+---
 
 
 
+## Content
 
-## [69. Sqrt(x) (Easy)](https://leetcode.com/problems/sqrtx/description/)
+* [69. Sqrt(x) (Easy)](#69)
+* [744. Find Smallest Letter Greater Than Target (Easy)](#744)
+* [540. Single Element in a Sorted Array (Medium)](#540)
+* [278. First Bad Version (Easy)](#278)
+* [153. Find Minimum in Rotated Sorted Array (Medium)](#153)
+* [34. Find First and Last Position of Element in Sorted Array (Medium)](#34)
+
+
+
+---
+
+## <span id="69">[69. Sqrt(x) (Easy)](https://leetcode.com/problems/sqrtx/description/)</span>
 
 ### Solution 1 (✅)
 
@@ -48,7 +61,7 @@ public:
 
 ---
 
-## [744. Find Smallest Letter Greater Than Target (Easy)](https://leetcode.com/problems/find-smallest-letter-greater-than-target/)
+## <span id="744">[744. Find Smallest Letter Greater Than Target (Easy)](https://leetcode.com/problems/find-smallest-letter-greater-than-target/)</span>
 
 ### Solution 1 (❌)
 
@@ -163,7 +176,7 @@ The key is `%`.
 
 ---
 
-## [540. Single Element in a Sorted Array (Medium)](https://leetcode.com/problems/single-element-in-a-sorted-array/)
+## <span id="540">[540. Single Element in a Sorted Array (Medium)](https://leetcode.com/problems/single-element-in-a-sorted-array/)</span>
 
 To find out whether left half or right half we should choose, we can decide with the left element and the right element of `nums[middle]`.
 
@@ -280,7 +293,7 @@ public:
 
 ---
 
-## [278. First Bad Version (Easy)](https://leetcode.com/problems/first-bad-version/)
+## <span id="278">[278. First Bad Version (Easy)](https://leetcode.com/problems/first-bad-version/)</span>
 
 ### Solution 1 (✅)
 
@@ -310,7 +323,7 @@ public:
 
 ---
 
-## [153. Find Minimum in Rotated Sorted Array (Medium)](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/)
+## <span id="153">[153. Find Minimum in Rotated Sorted Array (Medium)](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/)</span>
 
 ### Solution 1 (✅)
 
@@ -365,7 +378,7 @@ And the result is really good.
 
 ---
 
-## [34. Find First and Last Position of Element in Sorted Array (Medium)](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
+## <span id="34">[34. Find First and Last Position of Element in Sorted Array (Medium)](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/)</span>
 
 ### Solution 1 (❌)
 

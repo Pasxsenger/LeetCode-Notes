@@ -1,6 +1,15 @@
 # Divide and Conquer
 
-## [241. Different Ways to Add Parentheses (Medium)](https://leetcode.com/problems/different-ways-to-add-parentheses/)
+## Content
+
+* [241. Different Ways to Add Parentheses (Medium)](#241)
+* [95. Unique Binary Search Trees II (Medium)](#95)
+
+
+
+---
+
+## <span id="241">[241. Different Ways to Add Parentheses (Medium)](https://leetcode.com/problems/different-ways-to-add-parentheses/)</span>
 
 ### Solution 1 (✅)
 
@@ -100,7 +109,7 @@ Seems better.
 
 ---
 
-## [95. Unique Binary Search Trees II (Medium)](https://leetcode.com/problems/unique-binary-search-trees-ii/)
+## <span id="95">[95. Unique Binary Search Trees II (Medium)](https://leetcode.com/problems/unique-binary-search-trees-ii/)</span>
 
 ### Solution 1 (✅)
 
