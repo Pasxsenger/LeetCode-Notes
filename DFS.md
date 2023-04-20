@@ -1,6 +1,6 @@
 # DFS
 
-[695. Max Area of Island (Medium)](#[695. Max Area of Island (Medium)])
+[695. Max Area of Island (Medium)](#695. Max Area of Island (Medium))
 
 
 
