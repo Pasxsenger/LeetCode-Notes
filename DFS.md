@@ -120,3 +120,132 @@ But I alwasys have some concerns that changing original data should be avoided.
 
 ## [200. Number of Islands (Medium)](https://leetcode.com/problems/number-of-islands/)
 
+### Solution 1 (❌)
+
+This one is similar to last one. But I thought it's easier.
+
+However, I still got wrong answer.
+
+```c++
+class Solution {
+public:
+    int numIslands(vector<vector<char>>& grid) {
+        int islands = 0, M = grid.size(), N = grid[0].size();
+        vector<bool> visited(M * N, false);
+        vector<vector<int>> directions = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+        for(int i = 0; i < M; i++){
+            for(int j = 0; j < N; j++){
+                if(grid[i][j] == '1' && !visited[i * N + j]){
+                    islands++;
+                    DFS(grid, visited, directions, M, N, i, j);
+                }
+            }
+        }
+        return islands;
+    } 
+    void DFS(vector<vector<char>> grid, vector<bool>& visited, vector<vector<int>> directions, int M, int N, int row, int column) {
+        if(row < 0 || row >= M || column < 0 || column >= N || grid[row][column] == '0' || visited[row * N + column])
+            return;
+        visited[row * N + column] = true;
+        for(auto d : directions)
+            DFS(grid, visited, directions, M, N, row+d[0], column+d[1]);
+    }
+};
+```
+
+It failed on a big test case.
+
+![200-1](Pictures/200-1.png)
+
+
+
+### Solution 2 (✅)
+
+So I thought I might have to change the original data to shorten the runtime.
+
+Then I deleted the `visited` and added the `grid[row][column] = '0'`.
+
+```c++
+class Solution {
+public:
+    int numIslands(vector<vector<char>>& grid) {
+        int islands = 0, M = grid.size(), N = grid[0].size();
+        vector<vector<int>> directions = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+        for(int i = 0; i < M; i++){
+            for(int j = 0; j < N; j++){
+                if(grid[i][j] == '1'){
+                    islands++;
+                    DFS(grid, directions, M, N, i, j);
+                }
+            }
+        }
+        return islands;
+    } 
+    void DFS(vector<vector<char>>& grid, vector<vector<int>> directions, int M, int N, int row, int column) {
+        if(row < 0 || row >= M || column < 0 || column >= N || grid[row][column] == '0')
+            return;
+        grid[row][column] = '0';
+        for(auto d : directions)
+            DFS(grid, directions, M, N, row+d[0], column+d[1]);
+    }
+};
+```
+
+The efficiency was quite poor.
+
+![200-2](Pictures/200-2.png)
+
+### Solution 3 (✅)
+
+From [cryptx_](https://leetcode.com/cryptx_/)'s[solution](https://leetcode.com/problems/number-of-islands/solutions/501000/c-simple-dfs-beats-100-in-memory-detailed-explanantion/), I realized that the `directions` will cost lots of time and memory.
+
+So I replaced it with
+
+```c++
+DFS(grid, M, N, row+1, column);
+DFS(grid, M, N, row-1, column);
+DFS(grid, M, N, row, column+1);
+DFS(grid, M, N, row, column-1);
+```
+
+
+
+```c++
+class Solution {
+public:
+    int numIslands(vector<vector<char>>& grid) {
+        int islands = 0, M = grid.size(), N = grid[0].size();
+        for(int i = 0; i < M; i++){
+            for(int j = 0; j < N; j++){
+                if(grid[i][j] == '1'){
+                    islands++;
+                    DFS(grid, M, N, i, j);
+                }
+            }
+        }
+        return islands;
+    } 
+    void DFS(vector<vector<char>>& grid, int M, int N, int row, int column) {
+        if(row < 0 || row >= M || column < 0 || column >= N || grid[row][column] == '0')
+            return;
+        grid[row][column] = '0';
+        DFS(grid, M, N, row+1, column);
+        DFS(grid, M, N, row-1, column);
+        DFS(grid, M, N, row, column+1);
+        DFS(grid, M, N, row, column-1);
+    }
+};
+```
+
+
+
+**Guess what!**
+
+![200-3](Pictures/200-3.png)
+
+**SOOOO EFFICIENT!!!**
+
+---
+
+## [547. Number of Provinces (Medium)](https://leetcode.com/problems/number-of-provinces/)
+
