@@ -1,14 +1,14 @@
 # DFS
 
-[695. Max Area of Island (Medium)](#695)
+* [695. Max Area of Island (Medium)](#695)
+* [200. Number of Islands (Medium)](#200)
+* [547. Number of Provinces (Medium)](#547)
 
 
 
-[点击跳转](#jump)
+---
 
-
-
-## <span id="jump">[695. Max Area of Island (Medium)](https://leetcode.com/problems/max-area-of-island/)</span>
+## <span id="695">[695. Max Area of Island (Medium)](https://leetcode.com/problems/max-area-of-island/)</span>
 
 ### Solution 1 (❌)
 
@@ -126,7 +126,7 @@ But I alwasys have some concerns that changing original data should be avoided.
 
 ---
 
-## [200. Number of Islands (Medium)](https://leetcode.com/problems/number-of-islands/)
+## <span id="200">[200. Number of Islands (Medium)](https://leetcode.com/problems/number-of-islands/)</span>
 
 ### Solution 1 (❌)
 
@@ -255,5 +255,5 @@ public:
 
 ---
 
-## [547. Number of Provinces (Medium)](https://leetcode.com/problems/number-of-provinces/)
+## <span id="547">[547. Number of Provinces (Medium)](https://leetcode.com/problems/number-of-provinces/)</span>
 

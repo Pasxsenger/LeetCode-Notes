@@ -1,6 +1,22 @@
 # Greedy
 
-## [455. Assign Cookies (Easy)](https://leetcode.com/problems/assign-cookies/)
+* [455. Assign Cookies (Easy)](#455)
+* [435. Non-overlapping Intervals (Medium)](#435)
+* [452. Minimum Number of Arrows to Burst Balloons (Medium)](#452)
+* [406. Queue Reconstruction by Height (Medium)](#406)
+* [121. Best Time to Buy and Sell Stock (Easy)](#121)
+* [122. Best Time to Buy and Sell Stock II (Medium)](#122)
+* [605. Can Place Flowers (Easy)](#605)
+* [392. Is Subsequence (Easy)](#392)
+* [665. Non-decreasing Array (Medium)](#665)
+* [53. Maximum Subarray (Medium)](#53)
+* [763. Partition Labels (Medium)](#763)
+
+
+
+---
+
+## <span id="455">[455. Assign Cookies (Easy)](https://leetcode.com/problems/assign-cookies/)</span>
 
 ### Solution 1 (✅)
 
@@ -32,7 +48,7 @@ public:
 
 
 
-## [435. Non-overlapping Intervals (Medium)](https://leetcode.com/problems/non-overlapping-intervals/)
+## <span id="435">[435. Non-overlapping Intervals (Medium)](https://leetcode.com/problems/non-overlapping-intervals/)</span>
 
 ### Solution 1 (✅)
 
@@ -99,7 +115,7 @@ They look basically the same.
 
 ----
 
-## [452. Minimum Number of Arrows to Burst Balloons (Medium)](https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/)
+## <span id="452">[452. Minimum Number of Arrows to Burst Balloons (Medium)](https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/)</span>
 
 ### Solution 1 (❌)
 
@@ -172,7 +188,7 @@ public:
 
 ----
 
-## [406. Queue Reconstruction by Height (Medium)](https://leetcode.com/problems/queue-reconstruction-by-height/)
+## <span id="406">[406. Queue Reconstruction by Height (Medium)](https://leetcode.com/problems/queue-reconstruction-by-height/)</span>
 
 ### Solution 1 (✅)
 
@@ -250,7 +266,7 @@ public:
 
 ----
 
-## [121. Best Time to Buy and Sell Stock (Easy)](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
+## <span id="121">[121. Best Time to Buy and Sell Stock (Easy)](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)</span>
 
 ### Solution 1 (❌)
 
@@ -360,7 +376,7 @@ This story tells us never to underestimate any "easy" problems.
 
 ----
 
-## [122. Best Time to Buy and Sell Stock II (Medium)](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/)
+## <span id="122">[122. Best Time to Buy and Sell Stock II (Medium)](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/)</span>
 
 ### Solution 1 (✅)
 
@@ -384,7 +400,7 @@ public:
 
 ----
 
-## [605. Can Place Flowers (Easy)](https://leetcode.com/problems/can-place-flowers/)
+## <span id="605">[605. Can Place Flowers (Easy)](https://leetcode.com/problems/can-place-flowers/)</span>
 
 Another easy problem. Hmmm... Let me see...
 
@@ -456,7 +472,7 @@ public:
 
 ----
 
-## [392. Is Subsequence (Easy)](https://leetcode.com/problems/is-subsequence/)
+## <span id="392">[392. Is Subsequence (Easy)](https://leetcode.com/problems/is-subsequence/)</span>
 
 ### Solution 1 (✅)
 
@@ -483,7 +499,7 @@ public:
 
 ----
 
-## [665. Non-decreasing Array (Medium)](https://leetcode.com/problems/non-decreasing-array/)
+## <span id="665">[665. Non-decreasing Array (Medium)](https://leetcode.com/problems/non-decreasing-array/)</span>
 
 ### Solution 1 (❌)
 
@@ -627,7 +643,7 @@ At last, I've been asking myself a question all the time——can I give a solut
 
 ----
 
-## [53. Maximum Subarray (Medium)](https://leetcode.com/problems/maximum-subarray/)
+## <span id="53">[53. Maximum Subarray (Medium)](https://leetcode.com/problems/maximum-subarray/)</span>
 
 ### Solution 1 (✅)
 
@@ -737,7 +753,7 @@ Simple and efficient!   : - )
 
 
 
-## [763. Partition Labels (Medium)](https://leetcode.com/problems/partition-labels/)
+## <span id="763">[763. Partition Labels (Medium)](https://leetcode.com/problems/partition-labels/)</span>
 
 ### Solution 1 (✅)
 
