@@ -5,6 +5,7 @@
 * [695. Max Area of Island (Medium)](#695)
 * [200. Number of Islands (Medium)](#200)
 * [547. Number of Provinces (Medium)](#547)
+* [130. Surrounded Regions (Medium)](#130)
 
 
 
@@ -259,5 +260,39 @@ public:
 
 ## <span id="547">[547. Number of Provinces (Medium)](https://leetcode.com/problems/number-of-provinces/)</span>
 
-### Solution 1 (❌)
+### Solution 1 (✅)
+
+I watched this [video](https://www.youtube.com/watch?v=S5UUvCTM0V4) and wrote my code.
+
+```c++
+class Solution {
+public:
+    int findCircleNum(vector<vector<int>>& isConnected) {
+        int N = isConnected.size(), provinces = 0;
+        vector<bool> visited(N, false);
+        for(int i = 0; i < N; i++){
+            if(visited[i] == false)
+                provinces++;
+                DFS(isConnected, visited, i, N);
+        }
+        return provinces;
+    }
+    void DFS(vector<vector<int>>& isConnected, vector<bool>& visited, int i, int N) {
+        visited[i] = true;
+        for(int j = 0; j < N; j++){
+            if(!visited[j] && isConnected[i][j] == 1){
+                DFS(isConnected, visited, j, N);
+            }
+        }
+    }
+};
+```
+
+![547-1](Pictures/547-1.png)
+
+---
+
+## <span id="130">[130. Surrounded Regions (Medium)](https://leetcode.com/problems/surrounded-regions/)</span>
+
+### Solution 1 (✅)
 
