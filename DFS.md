@@ -6,6 +6,7 @@
 * [200. Number of Islands (Medium)](#200)
 * [547. Number of Provinces (Medium)](#547)
 * [130. Surrounded Regions (Medium)](#130)
+* [417. Pacific Atlantic Water Flow (Medium)](#417)
 
 
 
@@ -294,5 +295,127 @@ public:
 
 ## <span id="130">[130. Surrounded Regions (Medium)](https://leetcode.com/problems/surrounded-regions/)</span>
 
-### Solution 1 (✅)
+### Solution 1 (❌)
+
+The requirement is to find all surrounded 'O's and flip them to 'X's.
+
+I tried to solve this problem reversely. I went to find those not surrounded 'O's and flip the rest 'O's.
+
+```c++
+class Solution {
+public:
+    void solve(vector<vector<char>>& board) {
+        int M = board.size(), N = board[0].size();
+        if(M <= 2 || N <= 2)
+            return;
+
+        // Mark all 'O's that are not surrounded
+        vector<bool> visited(M*N, false);
+        // Check the left and right edge
+        for(int i = 0; i < M; i++){
+            if(board[i][0] == 'O')
+                dfs(board, visited, i, 0, M, N);
+            if(board[i][N-1] == 'O')
+                dfs(board, visited, i, N-1, M, N);
+        }
+        // Check the top and bottom edge
+        for(int j = 0; j < N; j++){
+            if(board[0][j] == 'O')
+                dfs(board, visited, 0, j, M, N);
+            if(board[M-1][j] == 'O')
+                dfs(board, visited, M-1, j, M, N);
+        }
+
+        // Flip the rest 'O's
+        for(int i = 1; i < M-1; i++){
+            for(int j = 1; j < N-1; j++){
+                if(board[i][j] == 'O' && !visited[i*N+j])
+                    board[i][j] = 'X';
+            }
+        }
+    }
+
+    void dfs(vector<vector<char>>& board, vector<bool>& visited, int row, int column, int M, int N) {
+        if(visited[row*N+column] || row < 0 || row >= M || column < 0 || column >= N || board[row][column] != 'O')
+            return;
+        visited[row*N+column] = true;
+        dfs(board, visited, row-1, column, M, N);
+        dfs(board, visited, row+1, column, M, N);
+        dfs(board, visited, row, column-1, M, N);
+        dfs(board, visited, row, column+1, M, N);
+    }
+};
+```
+
+And I got a Runtime Error.
+
+![130-1](Pictures/130-1.png)
+
+### Solution 2 (✅)
+
+When I did the debug, it showed `Program got signal SIGSEGV.` on console, which means the location is not allowed to access.
+
+So, I thought there might be some problems with the `dfs()`.
+
+And I added four if statements in the end.
+
+```c++
+class Solution {
+public:
+    void solve(vector<vector<char>>& board) {
+        int M = board.size(), N = board[0].size();
+        if(M <= 2 || N <= 2)
+            return;
+
+        // Mark all 'O's that are not surrounded
+        vector<bool> visited(M*N, false);
+        // Check the left and right edge
+        for(int i = 0; i < M; i++){
+            if(board[i][0] == 'O')
+                dfs(board, visited, i, 0, M, N);
+            if(board[i][N-1] == 'O')
+                dfs(board, visited, i, N-1, M, N);
+        }
+        // Check the top and bottom edge
+        for(int j = 0; j < N; j++){
+            if(board[0][j] == 'O')
+                dfs(board, visited, 0, j, M, N);
+            if(board[M-1][j] == 'O')
+                dfs(board, visited, M-1, j, M, N);
+        }
+
+        // Flip the rest 'O's
+        for(int i = 1; i < M-1; i++){
+            for(int j = 1; j < N-1; j++){
+                if(board[i][j] == 'O' && !visited[i*N+j])
+                    board[i][j] = 'X';
+            }
+        }
+    }
+
+    void dfs(vector<vector<char>>& board, vector<bool>& visited, int row, int column, int M, int N) {
+        if(visited[row*N+column] || board[row][column] != 'O')
+            return;
+        visited[row*N+column] = true;
+        if(row-1 >= 0)
+            dfs(board, visited, row-1, column, M, N);
+        if(row+1 < M)
+            dfs(board, visited, row+1, column, M, N);
+        if(column-1 >= 0)
+            dfs(board, visited, row, column-1, M, N);
+        if(column+1 < N)
+            dfs(board, visited, row, column+1, M, N);
+    }
+};
+```
+
+Gotcha!
+
+![130-2](Pictures/130-2.png)
+
+---
+
+## <span id="417">[417. Pacific Atlantic Water Flow (Medium)](https://leetcode.com/problems/pacific-atlantic-water-flow/)</span>
+
+### Solution 1 (❌)
 
