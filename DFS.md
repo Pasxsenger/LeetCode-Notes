@@ -419,3 +419,182 @@ Gotcha!
 
 ### Solution 1 (❌)
 
+After checking others' answers, I found out our ideas were basically the same.
+
+I used `pacific` and `atlantic` to record two sets. Then found the overlap as the `result`.
+
+```c++
+class Solution {
+public:
+    vector<vector<int>> pacificAtlantic(vector<vector<int>>& heights) {
+        int M = heights.size(), N = heights[0].size();
+        vector<bool> pacific(M*N, false);
+        vector<bool> atlantic(M*N, false);
+
+        for(int i = 0; i < M; i++){
+            dfs(heights, pacific, M, N, i, 0);
+            dfs(heights, atlantic, M, N, i, N-1);
+        }
+        for(int j = 0; j < N; j++){
+            dfs(heights, pacific, M, N, 0, j);
+            dfs(heights, atlantic, M, N, M-1, j);
+        }
+
+        vector<vector<int>> result;
+        for(int i = 0; i < M; i++){
+            for(int j = 0; j < N; j++){
+                if(pacific[i*N+j] && atlantic[i*N+j]){
+                    result.push_back({i, j});
+                }
+            }
+        }
+        return result;
+    }
+
+    void dfs(vector<vector<int>> heights, vector<bool>& reachable, int M, int N, int i, int j) {
+        if(reachable[i*N+j])
+            return;
+
+        reachable[i*N+j] = true;
+
+        // Go north
+        if(i-1 >= 0 && heights[i-1][j] >= heights[i][j])
+            dfs(heights, reachable, M, N, i-1, j);
+        
+        // Go south
+        if(i+1 < M && heights[i+1][j] >= heights[i][j])
+            dfs(heights, reachable, M, N, i+1, j);
+
+        // Go west
+        if(j-1 >= 0 && heights[i][j-1] >= heights[i][j])
+            dfs(heights, reachable, M, N, i, j-1);
+
+        // Go east
+        if(j+1 < N && heights[i][j+1] >= heights[i][j])
+            dfs(heights, reachable, M, N, i, j+1);
+    }
+};
+```
+
+But this met a Time Limit Exceeded.
+
+![417-1](Pictures/417-1.png)
+
+### Solution 2 (✅)
+
+So I tried to change the four if statements, which made it faster.
+
+```c++
+class Solution {
+public:
+    vector<vector<int>> pacificAtlantic(vector<vector<int>>& heights) {
+        int M = heights.size(), N = heights[0].size();
+        vector<bool> pacific(M*N, false);
+        vector<bool> atlantic(M*N, false);
+
+        for(int i = 0; i < M; i++){
+            dfs(heights, pacific, M, N, i, 0);
+            dfs(heights, atlantic, M, N, i, N-1);
+        }
+        for(int j = 0; j < N; j++){
+            dfs(heights, pacific, M, N, 0, j);
+            dfs(heights, atlantic, M, N, M-1, j);
+        }
+
+        vector<vector<int>> result;
+        for(int i = 0; i < M; i++){
+            for(int j = 0; j < N; j++){
+                if(pacific[i*N+j] && atlantic[i*N+j]){
+                    result.push_back({i, j});
+                }
+            }
+        }
+        return result;
+    }
+
+    void dfs(vector<vector<int>> heights, vector<bool>& reachable, int M, int N, int i, int j) {
+        reachable[i*N+j] = true;
+
+        // Go north
+        if(i-1 >= 0 && heights[i-1][j] >= heights[i][j] && !reachable[(i-1)*N+j])
+            dfs(heights, reachable, M, N, i-1, j);
+        
+        // Go south
+        if(i+1 < M && heights[i+1][j] >= heights[i][j] && !reachable[(i+1)*N+j])
+            dfs(heights, reachable, M, N, i+1, j);
+
+        // Go west
+        if(j-1 >= 0 && heights[i][j-1] >= heights[i][j] && !reachable[i*N+j-1])
+            dfs(heights, reachable, M, N, i, j-1);
+
+        // Go east
+        if(j+1 < N && heights[i][j+1] >= heights[i][j] && !reachable[i*N+j+1])
+            dfs(heights, reachable, M, N, i, j+1);
+    }
+};
+```
+
+However, the efficiency... Hmmm...
+
+![417-2](Pictures/417-2.png)
+
+### Solution 3 (✅)
+
+I tried [nitink_33](https://leetcode.com/nitink_33/)'s [solution](https://leetcode.com/problems/pacific-atlantic-water-flow/solutions/1743503/c-code-bfs-as-well-as-dfs-approach-simple-solution-runtime-20ms/), which was almost the same as mine but faster.
+
+I changed `vector<bool>` to `vector<vector<bool>>` but no improvement.
+
+This is soooo confused. So I just decided to leave it and to go to sleep lollll.
+
+```c++
+class Solution {
+public:
+    vector<vector<int>> pacificAtlantic(vector<vector<int>>& heights) {
+        int M = heights.size(), N = heights[0].size();
+        vector<vector<bool>> pacific(M, vector<bool>(N, false));
+        vector<vector<bool>> atlantic(M, vector<bool>(N, false));
+
+        for(int i = 0; i < M; i++){
+            dfs(heights, pacific, i, 0);
+            dfs(heights, atlantic, i, N-1);
+        }
+        for(int j = 0; j < N; j++){
+            dfs(heights, pacific, 0, j);
+            dfs(heights, atlantic, M-1, j);
+        }
+
+        vector<vector<int>> result;
+        for(int i = 0; i < M; i++){
+            for(int j = 0; j < N; j++){
+                if(pacific[i][j] && atlantic[i][j]){
+                    result.push_back({i, j});
+                }
+            }
+        }
+        return result;
+    }
+
+    void dfs(vector<vector<int>> heights, vector<vector<bool>>& reachable, int i, int j) {
+        int M = heights.size(), N = heights[0].size();
+        reachable[i][j] = true;
+
+        // Go north
+        if(i-1 >= 0 && !reachable[i-1][j] && heights[i-1][j] >= heights[i][j])
+            dfs(heights, reachable, i-1, j);
+        
+        // Go south
+        if(i+1 < M && !reachable[i+1][j] && heights[i+1][j] >= heights[i][j])
+            dfs(heights, reachable, i+1, j);
+
+        // Go west
+        if(j-1 >= 0 && !reachable[i][j-1] && heights[i][j-1] >= heights[i][j])
+            dfs(heights, reachable, i, j-1);
+
+        // Go east
+        if(j+1 < N && !reachable[i][j+1] && heights[i][j+1] >= heights[i][j])
+            dfs(heights, reachable, i, j+1);
+    }
+};
+```
+
+![417-3](Pictures/417-3.png)
